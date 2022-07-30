@@ -1,0 +1,19 @@
+Variable;Description;Format
+SampleID;Unique sample identifier;
+Replicate;Number of replicate;
+Group;Sample group;
+Label;Explanation of SampleID;
+Condition;Information about the sterilization of samples;
+Stage;Developmental stage from which the sample was taken;
+Tissue;Tissue from which the sample was obtained;
+Time;Days after the larvae of the first cycle hatched;[days]
+Temperature;Rearing temperature;[°C]
+Target;Targeted hypervariable region on the 16S/ITS gene;
+Primer_set;Primer set used to target the respective hypervariable region on the 16S/ITS gene;
+Forward_primer;Sequence of forward primer;
+Reverse_primer;Sequence of reverse primer;
+Forward_reads;File name of forward reads;
+Reverse_reads;File name of reverse reads;
+Reads;Number of generated raw reads;
+Extraction_date;Date on which the DNA was extracted;[yyyy-mm-dd]
+Biomass;Biomass of the sample from which the DNA was extracted;[g]

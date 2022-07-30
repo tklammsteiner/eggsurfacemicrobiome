@@ -1,0 +1,45 @@
+---
+title: "**Data generation**"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+<style>
+  body {text-align: justify}
+</style>
+
+### DNA extraction  
+
+DNA was extracted from various black soldier fly tissues and developmental stages (Fig. 1) using the NucleoSpin Soil Kit (Macherey-Nagel, Düren, DE) following the manufacturer's protocol:  
+
+* Eggs collected from the fly cage
+* Eggs collected from the fly cage and subsequently sterilized
+* Eggs extracted directly from the fly's ovary
+* Empty female abdomen after egg extraction
+* Eggs directly collected from the ovipositor
+* Ovipositor wash solution
+* Pupal cell pulp
+* Gut from larvae reared on non-sterilized diet
+* Gut from larvae reared on sterilized diet
+
+The extracted DNA was quantified and quality-checked via spectophotometry (NanoDrop<sup>TM</sup> 1000c, Thermo Scientific, Waltham, MA, US) and agarose gel electrophoresis.
+
+<br/>
+
+### Enrichment PCR
+The quality-checked DNA extracts were sent to Microsynth GmBH (Balgach, Switzerland) for enrichment and amplicon sequencing. After diluting the samples, the enrichment PCR with locus-specific primers for the V3-V4 (<span style="word-break: break-all">f-TCGTCGGCAGCGTCAGATGTGTATAAGAGACAGNNNNN<span style="color: #A70A19">CCTACGGGNGGCWGCAG</span> / r-GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAGNNNNN<span style="color: #A70A19">GACTACHVGGGTATCTAATCC</span>) and ITS2 region (f-TCGTCGGCAGCGTCAGATGTGTATAAGAGACAGNNNNN<span style="color: #A70A19">GCATCGATGAAGAACGCAGC</span> / r-GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAGNNNNN<span style="color: #A70A19">TCCTCCGCTTATTGATATGC</span></span>), followed by a 1-step PCR with locus-specific primers and Illumina overhang and a cleanbead purification was carried out. The final libraries were pooled and subjected to a final cleanbed purification of the pool (<span style="color: #A70A19">red</span> = locus-specific sequences).
+
+<br/>
+
+### Amplicon sequencing  
+The amplicon sequencing was carried out on a Illumina MiSeq, following a 2&#215;250 approach. The universal bacterial primers **341f/802r** (5′-CCTACGGGRSGCAGCAG-3′ / 5′-TACNVGGGTATCTAATCC-3′) and the universal fungal primers **ITS3f/ITS4r** (5′-GCATCGATGAAGAACGCAGC-3′ / 5′-TCCTCCGCTTATTGATATGC-3′) were used to target the  V3-V4 and ITS2 genetic regions, respectively. Library preparation was performed by the sequencing provider based on a Nextera two-step PCR including purification, quantification, and equimolar pooling.
+
+<br/>
+
+### Sequence processing and analysis
+All sequence data were processed using DADA2 (Callahan, et al. 2018). Data analysis and visualization was mainly done using the R packages ggplot2 (Wickham xxx), vegan (Oksanen, et al. xxx), phyloseq (xxx), ampvis2 (xxx). For a detailed and reproducible description please see workflows for [Bacteria](https://tklammsteiner.github.io/eggsurfacemicrobiome/bacteria.html) and [Fungi](https://tklammsteiner.github.io/eggsurfacemicrobiome/fungi.html).
+
+***

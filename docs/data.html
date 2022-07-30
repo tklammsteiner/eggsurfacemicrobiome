@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Data</title>
+
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/core-js-2.5.3/shim.min.js"></script>
+<script src="site_libs/react-17.0.0/react.min.js"></script>
+<script src="site_libs/react-17.0.0/react-dom.min.js"></script>
+<script src="site_libs/reactwidget-1.0.0/react-tools.js"></script>
+<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="site_libs/reactable-binding-0.3.0/reactable.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">EGGSURFACEMICROBIOME</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">About</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Workflow
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="data-generation.html">Data generation</a>
+    </li>
+    <li>
+      <a href="16S_analysis.html">16S analysis</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="data.html">Download Data</a>
+</li>
+<li>
+  <a href="figures.html">Figures</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="mailto:fromwastetofeed@outlook.com">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://twitter.com/fromwastetofeed">
+    <span class="fab fa-twitter fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://instagram.com/fromwastetofeed">
+    <span class="fa fa-instagram fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore"><strong>Data</strong></h1>
+
+</div>
+
+
+<div id="sequence-data" class="section level2">
+<h2>Sequence data</h2>
+<p>All sequence data generated within this study can be obtained via the
+BioProject accession number <a
+href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA809118">PRJNA809118</a>.
+The dataset contains 30 samples from eggs, larvae, pupae, and adults of
+the black soldier fly sequenced with bacteria and fungi-specific
+primers.</p>
+<p><br/></p>
+</div>
+<div id="metadata" class="section level2">
+<h2>Metadata</h2>
+<p>This table provides all metadata used in this study.</p>
+<div>
+<div>
+<label for="target-filter">Sequencing target</label>
+</div>
+<select id="target-filter" onchange="Reactable.setFilter(&#39;metadata-table&#39;, &#39;Target&#39;, this.value)">
+<option value="">All</option>
+<option>V3V4</option>
+<option>ITS2</option>
+</select>
+</div>
+<hr aria-hidden="false"/>
+<button onclick="Reactable.downloadDataCSV(&#39;metadata-table&#39;, &#39;metadata.csv&#39;)">Download as CSV</button>
+<div id="metadata-table" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="metadata-table">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"SampleID":["EC1_16S","EC2_16S","EC3_16S","FA1_16S","FA2_16S","FA3_16S","GS1_16S","GS2_16S","GS3_16S","LH1_16S","LH2_16S","LH3_16S","EO1_16S","EO2_16S","EO3_16S","EA1_16S","EA2_16S","EA3_16S","CP1_16S","CP2_16S","CP3_16S","ES1_16S","ES2_16S","ES3_16S","GU1_16S","GU2_16S","GU3_16S","WS1_16S","WS2_16S","WS3_16S","EC1_ITS","EC2_ITS","EC3_ITS","FA1_ITS","FA2_ITS","FA3_ITS","GS1_ITS","GS2_ITS","GS3_ITS","LH1_ITS","LH2_ITS","LH3_ITS","EO1_ITS","EO2_ITS","EO3_ITS","EA1_ITS","EA2_ITS","EA3_ITS","CP1_ITS","CP2_ITS","CP3_ITS","ES1_ITS","ES2_ITS","ES3_ITS","GU1_ITS","GU2_ITS","GU3_ITS","WS1_ITS","WS2_ITS","WS3_ITS"],"Replicate":[1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3],"Group":["EC","EC","EC","FA","FA","FA","GS","GS","GS","LH","LH","LH","EO","EO","EO","EA","EA","EA","CP","CP","CP","ES","ES","ES","GU","GU","GU","WS","WS","WS","EC","EC","EC","FA","FA","FA","GS","GS","GS","LH","LH","LH","EO","EO","EO","EA","EA","EA","CP","CP","CP","ES","ES","ES","GU","GU","GU","WS","WS","WS"],"Label":["Eggs cage","Eggs cage","Eggs cage","Female abdomen","Female abdomen","Female abdomen","Larval gut sterile","Larval gut sterile","Larval gut sterile","Larval haemolymph","Larval haemolymph","Larval haemolymph","Eggs ovarium","Eggs ovarium","Eggs ovarium","Eggs oviposition apparatus","Eggs oviposition apparatus","Eggs oviposition apparatus","Pupal cell pulp","Pupal cell pulp","Pupal cell pulp","Eggs sterile","Eggs sterile","Eggs sterile","Larval gut unsterile","Larval gut unsterile","Larval gut unsterile","Wash solution","Wash solution","Wash solution","Eggs cage","Eggs cage","Eggs cage","Female abdomen","Female abdomen","Female abdomen","Larval gut sterile","Larval gut sterile","Larval gut sterile","Larval haemolymph","Larval haemolymph","Larval haemolymph","Eggs ovarium","Eggs ovarium","Eggs ovarium","Eggs oviposition apparatus","Eggs oviposition apparatus","Eggs oviposition apparatus","Pupal cell pulp","Pupal cell pulp","Pupal cell pulp","Eggs sterile","Eggs sterile","Eggs sterile","Larval gut unsterile","Larval gut unsterile","Larval gut unsterile","Wash solution","Wash solution","Wash solution"],"Condition":["Non-sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Sterilized","Sterilized","Sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Sterilized","Sterilized","Sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Sterilized","Sterilized","Sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Sterilized","Sterilized","Sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Non-sterilized","Non-sterilized"],"Stage":["Eggs","Eggs","Eggs","Adult","Adult","Adult","Larva","Larva","Larva","Larva","Larva","Larva","Eggs","Eggs","Eggs","Eggs","Eggs","Eggs","Pupa","Pupa","Pupa","Eggs","Eggs","Eggs","Larva","Larva","Larva","Adult","Adult","Adult","Eggs","Eggs","Eggs","Adult","Adult","Adult","Larva","Larva","Larva","Larva","Larva","Larva","Eggs","Eggs","Eggs","Eggs","Eggs","Eggs","Pupa","Pupa","Pupa","Eggs","Eggs","Eggs","Larva","Larva","Larva","Adult","Adult","Adult"],"Tissue":["Eggs","Eggs","Eggs","Haemolymph","Haemolymph","Haemolymph","Gut","Gut","Gut","Haemolymph","Haemolymph","Haemolymph","Ovarium","Ovarium","Ovarium","Ovipositor","Ovipositor","Ovipositor","Haemolymph","Haemolymph","Haemolymph","Eggs","Eggs","Eggs","Gut","Gut","Gut","Ovipositor","Ovipositor","Ovipositor","Eggs","Eggs","Eggs","Haemolymph","Haemolymph","Haemolymph","Gut","Gut","Gut","Haemolymph","Haemolymph","Haemolymph","Ovarium","Ovarium","Ovarium","Ovipositor","Ovipositor","Ovipositor","Haemolymph","Haemolymph","Haemolymph","Eggs","Eggs","Eggs","Gut","Gut","Gut","Ovipositor","Ovipositor","Ovipositor"],"Days":[39,39,39,39,39,39,8,8,8,8,8,8,39,39,39,38,38,38,16,16,16,39,39,39,8,8,8,38,38,38,39,39,39,39,39,39,8,8,8,8,8,8,39,39,39,38,38,38,16,16,16,39,39,39,8,8,8,38,38,38],"Temperature":[27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27],"Target":["V3V4","V3V4","V3V4","V3V4","V3V4","V3V4","V3V4","V3V4","V3V4","V3V4","V3V4","V3V4","V3V4","V3V4","V3V4","V3V4","V3V4","V3V4","V3V4","V3V4","V3V4","V3V4","V3V4","V3V4","V3V4","V3V4","V3V4","V3V4","V3V4","V3V4","ITS2","ITS2","ITS2","ITS2","ITS2","ITS2","ITS2","ITS2","ITS2","ITS2","ITS2","ITS2","ITS2","ITS2","ITS2","ITS2","ITS2","ITS2","ITS2","ITS2","ITS2","ITS2","ITS2","ITS2","ITS2","ITS2","ITS2","ITS2","ITS2","ITS2"],"Primer_set":["341f/802r","341f/802r","341f/802r","341f/802r","341f/802r","341f/802r","341f/802r","341f/802r","341f/802r","341f/802r","341f/802r","341f/802r","341f/802r","341f/802r","341f/802r","341f/802r","341f/802r","341f/802r","341f/802r","341f/802r","341f/802r","341f/802r","341f/802r","341f/802r","341f/802r","341f/802r","341f/802r","341f/802r","341f/802r","341f/802r","ITS3f/ITS4r","ITS3f/ITS4r","ITS3f/ITS4r","ITS3f/ITS4r","ITS3f/ITS4r","ITS3f/ITS4r","ITS3f/ITS4r","ITS3f/ITS4r","ITS3f/ITS4r","ITS3f/ITS4r","ITS3f/ITS4r","ITS3f/ITS4r","ITS3f/ITS4r","ITS3f/ITS4r","ITS3f/ITS4r","ITS3f/ITS4r","ITS3f/ITS4r","ITS3f/ITS4r","ITS3f/ITS4r","ITS3f/ITS4r","ITS3f/ITS4r","ITS3f/ITS4r","ITS3f/ITS4r","ITS3f/ITS4r","ITS3f/ITS4r","ITS3f/ITS4r","ITS3f/ITS4r","ITS3f/ITS4r","ITS3f/ITS4r","ITS3f/ITS4r"],"Forward_primer":["CCTACGGGRSGCAGCAG","CCTACGGGRSGCAGCAG","CCTACGGGRSGCAGCAG","CCTACGGGRSGCAGCAG","CCTACGGGRSGCAGCAG","CCTACGGGRSGCAGCAG","CCTACGGGRSGCAGCAG","CCTACGGGRSGCAGCAG","CCTACGGGRSGCAGCAG","CCTACGGGRSGCAGCAG","CCTACGGGRSGCAGCAG","CCTACGGGRSGCAGCAG","CCTACGGGRSGCAGCAG","CCTACGGGRSGCAGCAG","CCTACGGGRSGCAGCAG","CCTACGGGRSGCAGCAG","CCTACGGGRSGCAGCAG","CCTACGGGRSGCAGCAG","CCTACGGGRSGCAGCAG","CCTACGGGRSGCAGCAG","CCTACGGGRSGCAGCAG","CCTACGGGRSGCAGCAG","CCTACGGGRSGCAGCAG","CCTACGGGRSGCAGCAG","CCTACGGGRSGCAGCAG","CCTACGGGRSGCAGCAG","CCTACGGGRSGCAGCAG","CCTACGGGRSGCAGCAG","CCTACGGGRSGCAGCAG","CCTACGGGRSGCAGCAG","GCATCGATGAAGAACGCAGC","GCATCGATGAAGAACGCAGC","GCATCGATGAAGAACGCAGC","GCATCGATGAAGAACGCAGC","GCATCGATGAAGAACGCAGC","GCATCGATGAAGAACGCAGC","GCATCGATGAAGAACGCAGC","GCATCGATGAAGAACGCAGC","GCATCGATGAAGAACGCAGC","GCATCGATGAAGAACGCAGC","GCATCGATGAAGAACGCAGC","GCATCGATGAAGAACGCAGC","GCATCGATGAAGAACGCAGC","GCATCGATGAAGAACGCAGC","GCATCGATGAAGAACGCAGC","GCATCGATGAAGAACGCAGC","GCATCGATGAAGAACGCAGC","GCATCGATGAAGAACGCAGC","GCATCGATGAAGAACGCAGC","GCATCGATGAAGAACGCAGC","GCATCGATGAAGAACGCAGC","GCATCGATGAAGAACGCAGC","GCATCGATGAAGAACGCAGC","GCATCGATGAAGAACGCAGC","GCATCGATGAAGAACGCAGC","GCATCGATGAAGAACGCAGC","GCATCGATGAAGAACGCAGC","GCATCGATGAAGAACGCAGC","GCATCGATGAAGAACGCAGC","GCATCGATGAAGAACGCAGC"],"Reverse_primer":["TACNVGGGTATCTAATCC","TACNVGGGTATCTAATCC","TACNVGGGTATCTAATCC","TACNVGGGTATCTAATCC","TACNVGGGTATCTAATCC","TACNVGGGTATCTAATCC","TACNVGGGTATCTAATCC","TACNVGGGTATCTAATCC","TACNVGGGTATCTAATCC","TACNVGGGTATCTAATCC","TACNVGGGTATCTAATCC","TACNVGGGTATCTAATCC","TACNVGGGTATCTAATCC","TACNVGGGTATCTAATCC","TACNVGGGTATCTAATCC","TACNVGGGTATCTAATCC","TACNVGGGTATCTAATCC","TACNVGGGTATCTAATCC","TACNVGGGTATCTAATCC","TACNVGGGTATCTAATCC","TACNVGGGTATCTAATCC","TACNVGGGTATCTAATCC","TACNVGGGTATCTAATCC","TACNVGGGTATCTAATCC","TACNVGGGTATCTAATCC","TACNVGGGTATCTAATCC","TACNVGGGTATCTAATCC","TACNVGGGTATCTAATCC","TACNVGGGTATCTAATCC","TACNVGGGTATCTAATCC","TCCTCCGCTTATTGATATGC","TCCTCCGCTTATTGATATGC","TCCTCCGCTTATTGATATGC","TCCTCCGCTTATTGATATGC","TCCTCCGCTTATTGATATGC","TCCTCCGCTTATTGATATGC","TCCTCCGCTTATTGATATGC","TCCTCCGCTTATTGATATGC","TCCTCCGCTTATTGATATGC","TCCTCCGCTTATTGATATGC","TCCTCCGCTTATTGATATGC","TCCTCCGCTTATTGATATGC","TCCTCCGCTTATTGATATGC","TCCTCCGCTTATTGATATGC","TCCTCCGCTTATTGATATGC","TCCTCCGCTTATTGATATGC","TCCTCCGCTTATTGATATGC","TCCTCCGCTTATTGATATGC","TCCTCCGCTTATTGATATGC","TCCTCCGCTTATTGATATGC","TCCTCCGCTTATTGATATGC","TCCTCCGCTTATTGATATGC","TCCTCCGCTTATTGATATGC","TCCTCCGCTTATTGATATGC","TCCTCCGCTTATTGATATGC","TCCTCCGCTTATTGATATGC","TCCTCCGCTTATTGATATGC","TCCTCCGCTTATTGATATGC","TCCTCCGCTTATTGATATGC","TCCTCCGCTTATTGATATGC"],"Forward":["EC1_S19_R1_001.fastq.gz","EC2_S20_R1_001.fastq.gz","EC3_S21_R1_001.fastq.gz","FA1_S28_R1_001.fastq.gz","FA2_S29_R1_001.fastq.gz","FA3_S30_R1_001.fastq.gz","GS1_S1_R1_001.fastq.gz","GS2_S2_R1_001.fastq.gz","GS3_S3_R1_001.fastq.gz","LH1_S4_R1_001.fastq.gz","LH2_S5_R1_001.fastq.gz","LH3_S6_R1_001.fastq.gz","EO1_S25_R1_001.fastq.gz","EO2_S26_R1_001.fastq.gz","EO3_S27_R1_001.fastq.gz","EA1_S16_R1_001.fastq.gz","EA2_S17_R1_001.fastq.gz","EA3_S18_R1_001.fastq.gz","CP1_S7_R1_001.fastq.gz","CP2_S8_R1_001.fastq.gz","CP3_S9_R1_001.fastq.gz","ES1_S22_R1_001.fastq.gz","ES2_S23_R1_001.fastq.gz","ES3_S24_R1_001.fastq.gz","GU1_S10_R1_001.fastq.gz","GU2_S11_R1_001.fastq.gz","GU3_S12_R1_001.fastq.gz","WS1_S13_R1_001.fastq.gz","WS2_S14_R1_001.fastq.gz","WS3_S15_R1_001.fastq.gz","EC1_S49_R1_001.fastq.gz","EC2_S50_R1_001.fastq.gz","EC3_S51_R1_001.fastq.gz","FA1_S58_R1_001.fastq.gz","FA2_S59_R1_001.fastq.gz","FA3_S60_R1_001.fastq.gz","GS1_S31_R1_001.fastq.gz","GS2_S32_R1_001.fastq.gz","GS3_S33_R1_001.fastq.gz","LH1_S34_R1_001.fastq.gz","LH2_S35_R1_001.fastq.gz","LH3_S36_R1_001.fastq.gz","EO1_S55_R1_001.fastq.gz","EO2_S56_R1_001.fastq.gz","EO3_S57_R1_001.fastq.gz","EA1_S46_R1_001.fastq.gz","EA2_S47_R1_001.fastq.gz","EA3_S48_R1_001.fastq.gz","CP1_S37_R1_001.fastq.gz","CP2_S38_R1_001.fastq.gz","CP3_S39_R1_001.fastq.gz","ES1_S52_R1_001.fastq.gz","ES2_S53_R1_001.fastq.gz","ES3_S54_R1_001.fastq.gz","GU1_S40_R1_001.fastq.gz","GU2_S41_R1_001.fastq.gz","GU3_S42_R1_001.fastq.gz","WS1_S43_R1_001.fastq.gz","WS2_S44_R1_001.fastq.gz","WS3_S45_R1_001.fastq.gz"],"Reverse":["EC1_S19_R2_001.fastq.gz","EC2_S20_R2_001.fastq.gz","EC3_S21_R2_001.fastq.gz","FA1_S28_R2_001.fastq.gz","FA2_S29_R2_001.fastq.gz","FA3_S30_R2_001.fastq.gz","GS1_S1_R2_001.fastq.gz","GS2_S2_R2_001.fastq.gz","GS3_S3_R2_001.fastq.gz","LH1_S4_R2_001.fastq.gz","LH2_S5_R2_001.fastq.gz","LH3_S6_R2_001.fastq.gz","EO1_S25_R2_001.fastq.gz","EO2_S26_R2_001.fastq.gz","EO3_S27_R2_001.fastq.gz","EA1_S16_R2_001.fastq.gz","EA2_S17_R2_001.fastq.gz","EA3_S18_R2_001.fastq.gz","CP1_S7_R2_001.fastq.gz","CP2_S8_R2_001.fastq.gz","CP3_S9_R2_001.fastq.gz","ES1_S22_R2_001.fastq.gz","ES2_S23_R2_001.fastq.gz","ES3_S24_R2_001.fastq.gz","GU1_S10_R2_001.fastq.gz","GU2_S11_R2_001.fastq.gz","GU3_S12_R2_001.fastq.gz","WS1_S13_R2_001.fastq.gz","WS2_S14_R2_001.fastq.gz","WS3_S15_R2_001.fastq.gz","EC1_S49_R2_001.fastq.gz","EC2_S50_R2_001.fastq.gz","EC3_S51_R2_001.fastq.gz","FA1_S58_R2_001.fastq.gz","FA2_S59_R2_001.fastq.gz","FA3_S60_R2_001.fastq.gz","GS1_S31_R2_001.fastq.gz","GS2_S32_R2_001.fastq.gz","GS3_S33_R2_001.fastq.gz","LH1_S34_R2_001.fastq.gz","LH2_S35_R2_001.fastq.gz","LH3_S36_R2_001.fastq.gz","EO1_S55_R2_001.fastq.gz","EO2_S56_R2_001.fastq.gz","EO3_S57_R2_001.fastq.gz","EA1_S46_R2_001.fastq.gz","EA2_S47_R2_001.fastq.gz","EA3_S48_R2_001.fastq.gz","CP1_S37_R2_001.fastq.gz","CP2_S38_R2_001.fastq.gz","CP3_S39_R2_001.fastq.gz","ES1_S52_R2_001.fastq.gz","ES2_S53_R2_001.fastq.gz","ES3_S54_R2_001.fastq.gz","GU1_S40_R2_001.fastq.gz","GU2_S41_R2_001.fastq.gz","GU3_S42_R2_001.fastq.gz","WS1_S43_R2_001.fastq.gz","WS2_S44_R2_001.fastq.gz","WS3_S45_R2_001.fastq.gz"],"Reads":[26053,33195,26954,32995,45569,36203,76554,53758,51743,31554,54060,39162,48122,34219,33226,1071,39575,44577,33761,32016,33502,39189,35757,33556,62257,42977,40374,28518,31266,25235,108027,105078,88282,72483,89306,83864,88353,39543,48939,46554,71750,77748,71865,83193,71321,65688,25705,55697,67325,67836,40303,102520,114513,132682,73207,72562,39815,61951,58297,86028],"Extraction_date":["30.03.2021","30.03.2021","30.03.2021","30.03.2021","30.03.2021","30.03.2021","31.03.2021","31.03.2021","31.03.2021","31.03.2021","31.03.2021","31.03.2021","30.03.2021","30.03.2021","30.03.2021","26.03.2021","26.03.2021","26.03.2021","31.03.2021","31.03.2021","31.03.2021","31.03.2021","31.03.2021","31.03.2021","31.03.2021","31.03.2021","31.03.2021","26.03.2021","26.03.2021","26.03.2021","30.03.2021","30.03.2021","30.03.2021","30.03.2021","30.03.2021","30.03.2021","31.03.2021","31.03.2021","31.03.2021","31.03.2021","31.03.2021","31.03.2021","30.03.2021","30.03.2021","30.03.2021","26.03.2021","26.03.2021","26.03.2021","31.03.2021","31.03.2021","31.03.2021","31.03.2021","31.03.2021","31.03.2021","31.03.2021","31.03.2021","31.03.2021","26.03.2021","26.03.2021","26.03.2021"],"Biomass":["0.153","0.090","0.099","0.140","0.158","0.102","0.097","0.087","0.090","0.159","0.101","0.166","0.051","0.061","0.071","0.105","0.098","0.097","0.247","0.235","0.169","0.186","0.171","0.139","0.049","0.093","0.080","0.000","0.000","0.000","0.153","0.090","0.099","0.140","0.158","0.102","0.097","0.087","0.090","0.159","0.101","0.166","0.051","0.061","0.071","0.105","0.098","0.097","0.247","0.235","0.169","0.186","0.171","0.139","0.049","0.093","0.080","0.000","0.000","0.000"]},"columns":[{"accessor":"SampleID","name":"SampleID","type":"character","style":{"position":"sticky","left":0,"background":"#f7f7f7","zIndex":1,"borderRight":"1px solid #eee"},"headerStyle":{"position":"sticky","left":0,"background":"#f7f7f7","zIndex":1,"borderRight":"1px solid #eee"}},{"accessor":"Replicate","name":"Replicate","type":"numeric"},{"accessor":"Group","name":"Group","type":"character"},{"accessor":"Label","name":"Label","type":"character"},{"accessor":"Condition","name":"Condition","type":"character"},{"accessor":"Stage","name":"Stage","type":"character"},{"accessor":"Tissue","name":"Tissue","type":"character"},{"accessor":"Days","name":"Days","type":"numeric"},{"accessor":"Temperature","name":"Temperature","type":"numeric"},{"accessor":"Target","name":"Target","type":"character"},{"accessor":"Primer_set","name":"Primer_set","type":"character"},{"accessor":"Forward_primer","name":"Forward_primer","type":"character"},{"accessor":"Reverse_primer","name":"Reverse_primer","type":"character"},{"accessor":"Forward","name":"Forward","type":"character"},{"accessor":"Reverse","name":"Reverse","type":"character"},{"accessor":"Reads","name":"Reads","type":"numeric"},{"accessor":"Extraction_date","name":"Extraction_date","type":"character"},{"accessor":"Biomass","name":"Biomass","type":"character"}],"resizable":true,"searchable":true,"defaultPageSize":10,"showPageSizeOptions":true,"pageSizeOptions":[10,25,50,100],"paginationType":"numbers","showPageInfo":true,"minRows":1,"highlight":true,"borderless":true,"compact":true,"nowrap":true,"theme":{"rowSelectedStyle":{"backgroundColor":"#eee","boxShadow":"#f7f7f7"}},"elementId":"metadata-table","dataKey":"17e884ea8f6de78055a0577ab1dc6ff0"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<p><br/></p>
+</div>
+<div id="explanation-of-metadata-variables" class="section level2">
+<h2>Explanation of metadata variables</h2>
+<p>This table provides an explanation of the variables presented in the
+metadata table.</p>
+<div id="htmlwidget-556476f79e6212e9b1de" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-556476f79e6212e9b1de">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Variable":["SampleID","Replicate","Group","Label","Condition","Stage","Tissue","Time","Temperature","Target","Primer_set","Forward_primer","Reverse_primer","Forward_reads","Reverse_reads","Reads","Extraction_date","Biomass"],"Description":["Unique sample identifier","Number of replicate","Sample group","Explanation of SampleID","Information about the sterilization of samples","Developmental stage from which the sample was taken","Tissue from which the sample was obtained","Days after the larvae of the first cycle hatched","Rearing temperature","Targeted hypervariable region on the 16S/ITS gene","Primer set used to target the respective hypervariable region on the 16S/ITS gene","Sequence of forward primer","Sequence of reverse primer","File name of forward reads","File name of reverse reads","Number of generated raw reads","Date on which the DNA was extracted","Biomass of the sample from which the DNA was extracted"],"Format":["","","","","","","","[days]","[°C]","","","","","","","","[yyyy-mm-dd]","[g]"]},"columns":[{"accessor":"Variable","name":"Variable","type":"character","maxWidth":170},{"accessor":"Description","name":"Description","type":"character","maxWidth":550},{"accessor":"Format","name":"Format","type":"character","maxWidth":100}],"pagination":false,"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"borderless":true,"compact":true,"dataKey":"d32e20691980d52bebe6916c2d3dfa94"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+---
+title: "**Data**"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Sequence data
+
+All sequence data generated within this study can be obtained via the BioProject accession number [PRJNA809118](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA809118). The dataset contains 30 samples from eggs, larvae, pupae, and adults of the black soldier fly sequenced with bacteria and fungi-specific primers.
+
+<br/>
+
+## Metadata
+
+This table provides all metadata used in this study.
+
+```{r metadata table, echo=F, warning=F, message=F}
+library(reactable)
+library(htmltools)
+library(fontawesome)
+library(dplyr)
+
+metadata <- read.csv("data/metadata.csv", sep = ";") %>% 
+  mutate(Biomass = format(round(Biomass, 3), nsmall = 3))
+
+htmltools::browsable(
+   tagList(
+     div(
+      div(tags$label("Sequencing target", `for` = "target-filter")),
+      tags$select(
+        id = "target-filter",
+        onchange = "Reactable.setFilter('metadata-table', 'Target', this.value)",
+        tags$option("All", value = ""),
+        lapply(unique(metadata$Target), tags$option)
+        )
+      ),
+    tags$hr("aria-hidden" = "false"),
+    tags$button("Download as CSV", onclick = "Reactable.downloadDataCSV('metadata-table', 'metadata.csv')"),
+    
+    reactable(
+      metadata,
+      elementId = "metadata-table",
+      highlight = T,
+      borderless = T,
+      defaultPageSize = 10,
+      resizable = T,
+      searchable = T,
+      compact = T,
+      wrap = F,
+      showPageSizeOptions = T,
+      pageSizeOptions = c(10, 25, 50, 100),
+      columns = list(
+        SampleID = colDef(
+          style = list(position = "sticky", left = 0, background = "#f7f7f7", zIndex = 1, borderRight = "1px solid #eee"),
+          headerStyle = list(position = "sticky", left = 0, background = "#f7f7f7", zIndex = 1, borderRight = "1px solid #eee")
+          )
+        ),
+      theme = reactableTheme(
+        rowSelectedStyle = list(backgroundColor = "#eee", boxShadow = "#f7f7f7")
+        ),
+      )
+    )
+  )
+```
+
+<br/>
+
+## Explanation of metadata variables
+
+This table provides an explanation of the variables presented in the metadata table.
+
+```{r variable description, echo=F, warning=F}
+variables <- read.csv("data/variables.csv", sep = ";")
+
+reactable(
+  variables, pagination = F,
+  borderless = T,
+  compact = T,
+  columns = list(
+    Variable = colDef(maxWidth = 170),
+    Description = colDef(maxWidth = 550),
+    Format = colDef(maxWidth = 100)
+  )
+)
+
+```
+
