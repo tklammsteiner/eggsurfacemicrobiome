@@ -1,21 +1,21 @@
-name: "eggsurfacemicrobiome"
+name: 'eggsurfacemicrobiome'
 navbar:
-  title: "EGGSURFACEMICROBIOME"
+  title: 'EGGSURFACEMICROBIOME'
   left:
-    - text: "About"
+    - text: 'About'
       href: index.html
-    - text: "Workflow"
+    - text: 'Workflow'
       menu: 
         - text: 'Data generation'
           href: data-generation.html
-        - text: '16S analysis'
-          href: 16S_analysis.html
-        - text: 'Sterilization protocol'
-          href: sterilization.html
-    - text: "Download Data"
-      href: data.html
+        - text: 'Data analysis'
+          href: data-analysis-16S.html
+        - text: 'Data download'
+          href: data.html
     - text: 'Figures'
       href: figures.html
+    - text: 'Sterilization protocol'
+      href: sterilization.html
   right: 
     - icon: fa-envelope fa-lg
       href: mailto:fromwastetofeed@outlook.com
@@ -23,7 +23,7 @@ navbar:
       href: https://twitter.com/fromwastetofeed
     - icon: fa fa-instagram fa-lg
       href: https://instagram.com/fromwastetofeed
-output_dir: "docs"
+output_dir: 'docs'
 output:
   html_document:
     theme: simplex

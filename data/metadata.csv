@@ -1,13 +1,13 @@
 SampleID;Replicate;Group;Label;Condition;Stage;Tissue;Days;Temperature;Target;Primer_set;Forward_primer;Reverse_primer;Forward;Reverse;Reads;Extraction_date;Biomass
 EC1_16S;1;EC;Eggs cage;Non-sterilized;Eggs;Eggs;39;27;V3V4;341f/802r;CCTACGGGRSGCAGCAG;TACNVGGGTATCTAATCC;EC1_S19_R1_001.fastq.gz;EC1_S19_R2_001.fastq.gz;26053;30.03.2021;0.153
-EC2_16S;2;EC;Eggs cage;Non-sterilized;Eggs;Eggs;39;27;V3V4;341f/802r;CCTACGGGRSGCAGCAG;TACNVGGGTATCTAATCC;EC2_S20_R1_001.fastq.gz;EC2_S20_R2_001.fastq.gz;33195;30.03.2021;0.090
+EC2_16S;2;EC;Eggs cage;Non-sterilized;Eggs;Eggs;39;27;V3V4;341f/802r;CCTACGGGRSGCAGCAG;TACNVGGGTATCTAATCC;EC2_S20_R1_001.fastq.gz;EC2_S20_R2_001.fastq.gz;33195;30.03.2021;0.09
 EC3_16S;3;EC;Eggs cage;Non-sterilized;Eggs;Eggs;39;27;V3V4;341f/802r;CCTACGGGRSGCAGCAG;TACNVGGGTATCTAATCC;EC3_S21_R1_001.fastq.gz;EC3_S21_R2_001.fastq.gz;26954;30.03.2021;0.099
-FA1_16S;1;FA;Female abdomen;Non-sterilized;Adult;Haemolymph;39;27;V3V4;341f/802r;CCTACGGGRSGCAGCAG;TACNVGGGTATCTAATCC;FA1_S28_R1_001.fastq.gz;FA1_S28_R2_001.fastq.gz;32995;30.03.2021;0.140
+FA1_16S;1;FA;Female abdomen;Non-sterilized;Adult;Haemolymph;39;27;V3V4;341f/802r;CCTACGGGRSGCAGCAG;TACNVGGGTATCTAATCC;FA1_S28_R1_001.fastq.gz;FA1_S28_R2_001.fastq.gz;32995;30.03.2021;0.14
 FA2_16S;2;FA;Female abdomen;Non-sterilized;Adult;Haemolymph;39;27;V3V4;341f/802r;CCTACGGGRSGCAGCAG;TACNVGGGTATCTAATCC;FA2_S29_R1_001.fastq.gz;FA2_S29_R2_001.fastq.gz;45569;30.03.2021;0.158
 FA3_16S;3;FA;Female abdomen;Non-sterilized;Adult;Haemolymph;39;27;V3V4;341f/802r;CCTACGGGRSGCAGCAG;TACNVGGGTATCTAATCC;FA3_S30_R1_001.fastq.gz;FA3_S30_R2_001.fastq.gz;36203;30.03.2021;0.102
 GS1_16S;1;GS;Larval gut sterile;Sterilized;Larva;Gut;8;27;V3V4;341f/802r;CCTACGGGRSGCAGCAG;TACNVGGGTATCTAATCC;GS1_S1_R1_001.fastq.gz;GS1_S1_R2_001.fastq.gz;76554;31.03.2021;0.097
 GS2_16S;2;GS;Larval gut sterile;Sterilized;Larva;Gut;8;27;V3V4;341f/802r;CCTACGGGRSGCAGCAG;TACNVGGGTATCTAATCC;GS2_S2_R1_001.fastq.gz;GS2_S2_R2_001.fastq.gz;53758;31.03.2021;0.087
-GS3_16S;3;GS;Larval gut sterile;Sterilized;Larva;Gut;8;27;V3V4;341f/802r;CCTACGGGRSGCAGCAG;TACNVGGGTATCTAATCC;GS3_S3_R1_001.fastq.gz;GS3_S3_R2_001.fastq.gz;51743;31.03.2021;0.090
+GS3_16S;3;GS;Larval gut sterile;Sterilized;Larva;Gut;8;27;V3V4;341f/802r;CCTACGGGRSGCAGCAG;TACNVGGGTATCTAATCC;GS3_S3_R1_001.fastq.gz;GS3_S3_R2_001.fastq.gz;51743;31.03.2021;0.09
 LH1_16S;1;LH;Larval haemolymph;Non-sterilized;Larva;Haemolymph;8;27;V3V4;341f/802r;CCTACGGGRSGCAGCAG;TACNVGGGTATCTAATCC;LH1_S4_R1_001.fastq.gz;LH1_S4_R2_001.fastq.gz;31554;31.03.2021;0.159
 LH2_16S;2;LH;Larval haemolymph;Non-sterilized;Larva;Haemolymph;8;27;V3V4;341f/802r;CCTACGGGRSGCAGCAG;TACNVGGGTATCTAATCC;LH2_S5_R1_001.fastq.gz;LH2_S5_R2_001.fastq.gz;54060;31.03.2021;0.101
 LH3_16S;3;LH;Larval haemolymph;Non-sterilized;Larva;Haemolymph;8;27;V3V4;341f/802r;CCTACGGGRSGCAGCAG;TACNVGGGTATCTAATCC;LH3_S6_R1_001.fastq.gz;LH3_S6_R2_001.fastq.gz;39162;31.03.2021;0.166
@@ -25,37 +25,7 @@ ES2_16S;2;ES;Eggs sterile;Sterilized;Eggs;Eggs;39;27;V3V4;341f/802r;CCTACGGGRSGC
 ES3_16S;3;ES;Eggs sterile;Sterilized;Eggs;Eggs;39;27;V3V4;341f/802r;CCTACGGGRSGCAGCAG;TACNVGGGTATCTAATCC;ES3_S24_R1_001.fastq.gz;ES3_S24_R2_001.fastq.gz;33556;31.03.2021;0.139
 GU1_16S;1;GU;Larval gut unsterile;Non-sterilized;Larva;Gut;8;27;V3V4;341f/802r;CCTACGGGRSGCAGCAG;TACNVGGGTATCTAATCC;GU1_S10_R1_001.fastq.gz;GU1_S10_R2_001.fastq.gz;62257;31.03.2021;0.049
 GU2_16S;2;GU;Larval gut unsterile;Non-sterilized;Larva;Gut;8;27;V3V4;341f/802r;CCTACGGGRSGCAGCAG;TACNVGGGTATCTAATCC;GU2_S11_R1_001.fastq.gz;GU2_S11_R2_001.fastq.gz;42977;31.03.2021;0.093
-GU3_16S;3;GU;Larval gut unsterile;Non-sterilized;Larva;Gut;8;27;V3V4;341f/802r;CCTACGGGRSGCAGCAG;TACNVGGGTATCTAATCC;GU3_S12_R1_001.fastq.gz;GU3_S12_R2_001.fastq.gz;40374;31.03.2021;0.080
-WS1_16S;1;WS;Wash solution;Non-sterilized;Adult;Ovipositor;38;27;V3V4;341f/802r;CCTACGGGRSGCAGCAG;TACNVGGGTATCTAATCC;WS1_S13_R1_001.fastq.gz;WS1_S13_R2_001.fastq.gz;28518;26.03.2021;0.000
-WS2_16S;2;WS;Wash solution;Non-sterilized;Adult;Ovipositor;38;27;V3V4;341f/802r;CCTACGGGRSGCAGCAG;TACNVGGGTATCTAATCC;WS2_S14_R1_001.fastq.gz;WS2_S14_R2_001.fastq.gz;31266;26.03.2021;0.000
-WS3_16S;3;WS;Wash solution;Non-sterilized;Adult;Ovipositor;38;27;V3V4;341f/802r;CCTACGGGRSGCAGCAG;TACNVGGGTATCTAATCC;WS3_S15_R1_001.fastq.gz;WS3_S15_R2_001.fastq.gz;25235;26.03.2021;0.000
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
+GU3_16S;3;GU;Larval gut unsterile;Non-sterilized;Larva;Gut;8;27;V3V4;341f/802r;CCTACGGGRSGCAGCAG;TACNVGGGTATCTAATCC;GU3_S12_R1_001.fastq.gz;GU3_S12_R2_001.fastq.gz;40374;31.03.2021;0.08
+WS1_16S;1;WS;Wash solution;Non-sterilized;Adult;Ovipositor;38;27;V3V4;341f/802r;CCTACGGGRSGCAGCAG;TACNVGGGTATCTAATCC;WS1_S13_R1_001.fastq.gz;WS1_S13_R2_001.fastq.gz;28518;26.03.2021;0
+WS2_16S;2;WS;Wash solution;Non-sterilized;Adult;Ovipositor;38;27;V3V4;341f/802r;CCTACGGGRSGCAGCAG;TACNVGGGTATCTAATCC;WS2_S14_R1_001.fastq.gz;WS2_S14_R2_001.fastq.gz;31266;26.03.2021;0
+WS3_16S;3;WS;Wash solution;Non-sterilized;Adult;Ovipositor;38;27;V3V4;341f/802r;CCTACGGGRSGCAGCAG;TACNVGGGTATCTAATCC;WS3_S15_R1_001.fastq.gz;WS3_S15_R2_001.fastq.gz;25235;26.03.2021;0

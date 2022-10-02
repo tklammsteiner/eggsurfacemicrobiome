@@ -27,15 +27,6 @@ metadata <- read.csv("data/metadata.csv", sep = ";") %>%
 
 htmltools::browsable(
    tagList(
-     div(
-      div(tags$label("Sequencing target", `for` = "target-filter")),
-      tags$select(
-        id = "target-filter",
-        onchange = "Reactable.setFilter('metadata-table', 'Target', this.value)",
-        tags$option("All", value = ""),
-        lapply(unique(metadata$Target), tags$option)
-        )
-      ),
     tags$hr("aria-hidden" = "false"),
     tags$button("Download as CSV", onclick = "Reactable.downloadDataCSV('metadata-table', 'metadata.csv')"),
     
@@ -47,7 +38,7 @@ htmltools::browsable(
       defaultPageSize = 10,
       resizable = T,
       searchable = T,
-      compact = T,
+      compact = TRUE,
       wrap = F,
       showPageSizeOptions = T,
       pageSizeOptions = c(10, 25, 50, 100),

@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Bacteria</title>
+
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/core-js-2.5.3/shim.min.js"></script>
+<script src="site_libs/react-17.0.0/react.min.js"></script>
+<script src="site_libs/react-17.0.0/react-dom.min.js"></script>
+<script src="site_libs/reactwidget-1.0.0/react-tools.js"></script>
+<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="site_libs/reactable-binding-0.3.0/reactable.js"></script>
+<link href="site_libs/jquery-sparkline-2.1.2/jquery.sparkline.css" rel="stylesheet" />
+<script src="site_libs/jquery-sparkline-2.1.2/jquery.sparkline.js"></script>
+<script src="site_libs/sparkline-binding-2.0/sparkline.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">EGGSURFACEMICROBIOME</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">About</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Workflow
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="data-generation.html">Data generation</a>
+    </li>
+    <li>
+      <a href="data-analysis-16S.html">Data analysis</a>
+    </li>
+    <li>
+      <a href="data.html">Data download</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="figures.html">Figures</a>
+</li>
+<li>
+  <a href="sterilization.html">Sterilization protocol</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="mailto:fromwastetofeed@outlook.com">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://twitter.com/fromwastetofeed">
+    <span class="fab fa-twitter fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://instagram.com/fromwastetofeed">
+    <span class="fa fa-instagram fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Bacteria</h1>
+
+</div>
+
+
+<style>
+  body {text-align: justify}
+</style>
+<div id="sequence-processing" class="section level2">
+<h2><strong>Sequence processing</strong></h2>
+<div id="prepare-environment" class="section level3">
+<h3>Prepare environment</h3>
+<div id="load-packages" class="section level4">
+<h4>Load packages</h4>
+<pre class="r"><code>library(tidyverse); packageVersion(&#39;tidyverse&#39;)
+library(reshape2); packageVersion(&#39;reshape2&#39;)
+library(ampvis2); packageVersion(&#39;ampvis2&#39;)
+library(phyloseq); packageVersion(&#39;phyloseq&#39;)
+library(microbiomeMarker); packageVersion(&#39;microbiomeMarker&#39;)
+library(microbiome); packageVersion(&#39;microbiome&#39;)
+library(RColorBrewer); packageVersion(&#39;RColorBrewer&#39;)
+library(vegan); packageVersion(&#39;vegan&#39;)
+library(ggpubr); packageVersion(&#39;ggpubr&#39;)
+library(MicEco); packageVersion(&#39;MicEco&#39;)
+library(RVAideMemoire); packageVersion(&#39;RVAideMemoire&#39;)</code></pre>
+</div>
+<div id="set-path-and-gather-samples" class="section level4">
+<h4>Set path and gather samples</h4>
+<pre class="r"><code>path &lt;- &quot;...set path to your read files...&quot;
+list.files(path)
+
+fnFs &lt;- sort(list.files(path, pattern=&quot;_R1_001_trimmed.fastq&quot;, full.names = TRUE))
+fnRs &lt;- sort(list.files(path, pattern=&quot;_R2_001_trimmed.fastq&quot;, full.names = TRUE))
+
+sample.names &lt;- sapply(strsplit(basename(fnFs), &quot;_&quot;), `[`, 1)</code></pre>
+<p><br/></p>
+</div>
+</div>
+<div id="quality-profiles-of-raw-reads" class="section level3">
+<h3>Quality profiles of raw reads</h3>
+<pre class="r"><code>plotQualityProfile(fnFs[1:2])</code></pre>
+<p><img src="output/16S-fnFs-qual.png" /></p>
+<pre class="r"><code>plotQualityProfile(fnRs[1:2])</code></pre>
+<p><img src="output/16S-fnRs-qual.png" /></p>
+<p><br/></p>
+</div>
+<div id="filter-raw-reads" class="section level3">
+<h3>Filter raw reads</h3>
+<pre class="r"><code>filtFs &lt;- file.path(path, &quot;filtered&quot;, paste0(sample.names, &quot;_F_filt.fastq.gz&quot;))
+filtRs &lt;- file.path(path, &quot;filtered&quot;, paste0(sample.names, &quot;_R_filt.fastq.gz&quot;))
+
+out &lt;- filterAndTrim(fnFs, filtFs, fnRs, filtRs, truncLen=c(225,220),
+                     maxN=0, maxEE=c(2,2), truncQ=2, rm.phix=TRUE,
+                     compress=TRUE, multithread=FALSE)
+
+out</code></pre>
+<div id="htmlwidget-09c8f662c5ec2e7d65d1" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-09c8f662c5ec2e7d65d1">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["CP1_S7_R1_001_trimmed.fastq.gz","CP2_S8_R1_001_trimmed.fastq.gz","CP3_S9_R1_001_trimmed.fastq.gz","EA1_S16_R1_001_trimmed.fastq.gz","EA2_S17_R1_001_trimmed.fastq.gz","EA3_S18_R1_001_trimmed.fastq.gz","EC1_S19_R1_001_trimmed.fastq.gz","EC2_S20_R1_001_trimmed.fastq.gz","EC3_S21_R1_001_trimmed.fastq.gz","EO1_S25_R1_001_trimmed.fastq.gz","EO2_S26_R1_001_trimmed.fastq.gz","EO3_S27_R1_001_trimmed.fastq.gz","ES1_S22_R1_001_trimmed.fastq.gz","ES2_S23_R1_001_trimmed.fastq.gz","ES3_S24_R1_001_trimmed.fastq.gz","FA1_S28_R1_001_trimmed.fastq.gz","FA2_S29_R1_001_trimmed.fastq.gz","FA3_S30_R1_001_trimmed.fastq.gz","GS1_S1_R1_001_trimmed.fastq.gz","GS2_S2_R1_001_trimmed.fastq.gz","GS3_S3_R1_001_trimmed.fastq.gz","GU1_S10_R1_001_trimmed.fastq.gz","GU2_S11_R1_001_trimmed.fastq.gz","GU3_S12_R1_001_trimmed.fastq.gz","LH1_S4_R1_001_trimmed.fastq.gz","LH2_S5_R1_001_trimmed.fastq.gz","LH3_S6_R1_001_trimmed.fastq.gz","WS1_S13_R1_001_trimmed.fastq.gz","WS2_S14_R1_001_trimmed.fastq.gz","WS3_S15_R1_001_trimmed.fastq.gz"],"reads.in":[28436,25992,27915,831,33115,37313,21482,27384,22079,40207,28422,27393,32249,29559,27258,26474,38295,30146,64253,45465,42783,50884,35560,33745,25777,45433,32140,23072,26112,21156],"reads.out":[28399,25766,27821,786,33068,37218,21314,27259,21988,39574,28333,27264,32105,29426,27117,26057,38013,29770,64178,45446,42757,50763,35466,33545,24025,45241,31226,22774,25988,21043]},"columns":[{"accessor":".rownames","name":"","type":"character","sortable":false,"filterable":false,"rowHeader":true},{"accessor":"reads.in","name":"reads.in","type":"numeric"},{"accessor":"reads.out","name":"reads.out","type":"numeric"}],"defaultPageSize":10,"showPageSizeOptions":true,"pageSizeOptions":[10,20,30],"paginationType":"numbers","showPageInfo":true,"minRows":1,"highlight":true,"borderless":true,"dataKey":"2412caf094d44dc39014bf5fa1724a25"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<p><br/></p>
+</div>
+<div id="quality-profiles-of-filtered-reads" class="section level3">
+<h3>Quality profiles of filtered reads</h3>
+<pre class="r"><code>plotQualityProfile(filtFs[1:2])</code></pre>
+<p><img src="output/16S-filtFs-qual.png" /></p>
+<pre class="r"><code>plotQualityProfile(filtRs[1:2])</code></pre>
+<p><img src="output/16S-filtRs-qual.png" /></p>
+<p><br/></p>
+</div>
+<div id="assess-and-plot-errors" class="section level3">
+<h3>Assess and plot errors</h3>
+<pre class="r"><code>errF &lt;- learnErrors(filtFs, multithread=TRUE)
+errR &lt;- learnErrors(filtRs, multithread=TRUE)
+
+plotErrors(errF, nominalQ=TRUE)</code></pre>
+<p><img src="output/16S-errF.png" /></p>
+<pre class="r"><code>plotErrors(errR, nominalQ=TRUE)</code></pre>
+<p><img src="output/16S-errR.png" /></p>
+<p><br/></p>
+</div>
+<div id="dereplicate" class="section level3">
+<h3>Dereplicate</h3>
+<pre class="r"><code>derepFs &lt;- derepFastq(filtFs, verbose=TRUE)
+derepRs &lt;- derepFastq(filtRs, verbose=TRUE)
+
+# Name the derep-class objects by the sample names
+names(derepFs) &lt;- sample.names
+names(derepRs) &lt;- sample.names</code></pre>
+<p><br/></p>
+</div>
+<div id="sample-inference" class="section level3">
+<h3>Sample inference</h3>
+<pre class="r"><code>dadaFs &lt;- dada(derepFs, err=errF, multithread=TRUE)
+dadaRs &lt;- dada(derepRs, err=errR, multithread=TRUE)</code></pre>
+<div id="merge-paired-reads" class="section level4">
+<h4>Merge paired reads</h4>
+<pre class="r"><code>mergers &lt;- mergePairs(dadaFs, derepFs, dadaRs, derepRs, verbose=TRUE)</code></pre>
+<p><br/></p>
+</div>
+</div>
+<div id="generate-sequence-table" class="section level3">
+<h3>Generate sequence table</h3>
+<pre class="r"><code>seqtab &lt;- makeSequenceTable(mergers)
+
+# Inspect distribution of sequence lengths
+table(nchar(getSequences(seqtab)))</code></pre>
+<div id="filter-expected-range" class="section level4">
+<h4>Filter expected range</h4>
+<pre class="r"><code>seqtab_subset &lt;- seqtab[,nchar(colnames(seqtab)) %in% seq(426,428)]
+
+# Inspect distribution of sequence lengths
+table(nchar(getSequences(seqtab_subset)))</code></pre>
+</div>
+<div id="remove-chimeras" class="section level4">
+<h4>Remove chimeras</h4>
+<pre class="r"><code>seqtab_subset.nochim &lt;- removeBimeraDenovo(seqtab_subset, 
+                                           method=&quot;consensus&quot;, 
+                                           multithread=TRUE, 
+                                           verbose=TRUE)
+
+dim(seqtab_subset.nochim)
+
+sum(seqtab_subset.nochim)/sum(seqtab_subset)</code></pre>
+<p><br/></p>
+</div>
+</div>
+<div id="track-reads-through-the-pipeline" class="section level3">
+<h3>Track reads through the pipeline</h3>
+<pre class="r"><code>getN &lt;- function(x) sum(getUniques(x))
+
+track &lt;- cbind(out, 
+               sapply(dadaFs, getN), 
+               sapply(dadaRs, getN), 
+               sapply(mergers, getN), 
+               rowSums(seqtab_subset.nochim))
+
+colnames(track) &lt;- c(&quot;input&quot;, &quot;filtered&quot;, &quot;denoisedF&quot;, &quot;denoisedR&quot;, &quot;merged&quot;, &quot;nonchim&quot;)
+rownames(track) &lt;- sample.names
+
+head(track)</code></pre>
+<div id="htmlwidget-6c22c7b21cfb50191894" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-6c22c7b21cfb50191894">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Group":["CP1","CP2","CP3","EA1","EA2","EA3","EC1","EC2","EC3","EO1","EO2","EO3","ES1","ES2","ES3","FA1","FA2","FA3","GS1","GS2","GS3","GU1","GU2","GU3","LH1","LH2","LH3","WS1","WS2","WS3"],"input":[28436,25992,27915,831,33115,37313,21482,27384,22079,40207,28422,27393,32249,29559,27258,26474,38295,30146,64253,45465,42783,50884,35560,33745,25777,45433,32140,23072,26112,21156],"filtered":[28399,25766,27821,786,33068,37218,21314,27259,21988,39574,28333,27264,32105,29426,27117,26057,38013,29770,64178,45446,42757,50763,35466,33545,24025,45241,31226,22774,25988,21043],"denoisedF":[28326,25677,27771,754,33003,37135,21240,27209,21899,39529,28273,27200,32049,29381,27019,25957,37918,29682,64005,45312,42584,50579,35368,33343,23944,45196,31111,22678,25904,20877],"denoisedR":[28358,25705,27780,772,33033,37164,21259,27209,21956,39517,28296,27221,32060,29393,27062,25999,37978,29742,64080,45346,42644,50569,35369,33396,23917,45188,31179,22679,25866,20942],"merged":[28253,25564,27698,747,32948,37014,21138,27170,21869,39468,28229,27148,31988,29354,26994,25897,37849,29639,63429,44966,42202,49971,35022,32797,23775,45081,31010,22498,25737,20757],"nonchim":[27126,22595,25839,679,29696,33816,17895,23799,19414,36434,25588,24276,28465,26107,24045,24239,36990,27849,48924,36301,31084,22949,22338,22421,16167,43798,21901,19843,24156,19030],"overview":[[28436,28399,28326,28358,28253,27126],[25992,25766,25677,25705,25564,22595],[27915,27821,27771,27780,27698,25839],[831,786,754,772,747,679],[33115,33068,33003,33033,32948,29696],[37313,37218,37135,37164,37014,33816],[21482,21314,21240,21259,21138,17895],[27384,27259,27209,27209,27170,23799],[22079,21988,21899,21956,21869,19414],[40207,39574,39529,39517,39468,36434],[28422,28333,28273,28296,28229,25588],[27393,27264,27200,27221,27148,24276],[32249,32105,32049,32060,31988,28465],[29559,29426,29381,29393,29354,26107],[27258,27117,27019,27062,26994,24045],[26474,26057,25957,25999,25897,24239],[38295,38013,37918,37978,37849,36990],[30146,29770,29682,29742,29639,27849],[64253,64178,64005,64080,63429,48924],[45465,45446,45312,45346,44966,36301],[42783,42757,42584,42644,42202,31084],[50884,50763,50579,50569,49971,22949],[35560,35466,35368,35369,35022,22338],[33745,33545,33343,33396,32797,22421],[25777,24025,23944,23917,23775,16167],[45433,45241,45196,45188,45081,43798],[32140,31226,31111,31179,31010,21901],[23072,22774,22678,22679,22498,19843],[26112,25988,25904,25866,25737,24156],[21156,21043,20877,20942,20757,19030]]},"columns":[{"accessor":"Group","name":"Group","type":"character","maxWidth":60},{"accessor":"input","name":"input","type":"numeric"},{"accessor":"filtered","name":"filtered","type":"numeric"},{"accessor":"denoisedF","name":"denoisedF","type":"numeric"},{"accessor":"denoisedR","name":"denoisedR","type":"numeric"},{"accessor":"merged","name":"merged","type":"numeric"},{"accessor":"nonchim","name":"nonchim","type":"numeric"},{"accessor":"overview","name":"overview","type":"list","cell":[{"name":"WidgetContainer","attribs":{"key":"cb78e3e929bbe04ad1440c9c65599845"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-99512e72b7f318794796","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-99512e72b7f318794796"},"children":["{\"x\":{\"values\":[28436,28399,28326,28358,28253,27126],\"options\":{\"type\":\"bar\",\"chartRangeMin\":0,\"chartRangeMax\":64253,\"barColor\":\"#FF934F\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"1fa9a879ccb8cc3a4e03d6bdf411d766"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-2dd9dc6f4ea6b956babc","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-2dd9dc6f4ea6b956babc"},"children":["{\"x\":{\"values\":[25992,25766,25677,25705,25564,22595],\"options\":{\"type\":\"bar\",\"chartRangeMin\":0,\"chartRangeMax\":64253,\"barColor\":\"#FF934F\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"43fd670079cb69dc217a66f8d391a59b"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-50585ab2f88646f8cbe7","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-50585ab2f88646f8cbe7"},"children":["{\"x\":{\"values\":[27915,27821,27771,27780,27698,25839],\"options\":{\"type\":\"bar\",\"chartRangeMin\":0,\"chartRangeMax\":64253,\"barColor\":\"#FF934F\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"15fc3cbe31a7233523b93124d6505e9d"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-c5d31c80bbaf74310058","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-c5d31c80bbaf74310058"},"children":["{\"x\":{\"values\":[831,786,754,772,747,679],\"options\":{\"type\":\"bar\",\"chartRangeMin\":0,\"chartRangeMax\":64253,\"barColor\":\"#FF934F\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"288f89a1bb14f987f2c5488193e72100"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-18121d2512749c3af9ef","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-18121d2512749c3af9ef"},"children":["{\"x\":{\"values\":[33115,33068,33003,33033,32948,29696],\"options\":{\"type\":\"bar\",\"chartRangeMin\":0,\"chartRangeMax\":64253,\"barColor\":\"#FF934F\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"4491831c8868eb90f36cd92581d9d3c3"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-4e37597878970920a367","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-4e37597878970920a367"},"children":["{\"x\":{\"values\":[37313,37218,37135,37164,37014,33816],\"options\":{\"type\":\"bar\",\"chartRangeMin\":0,\"chartRangeMax\":64253,\"barColor\":\"#FF934F\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"bc100e4398f94333ba03bc27ff8ac4b1"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-048425d6457422c251d9","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-048425d6457422c251d9"},"children":["{\"x\":{\"values\":[21482,21314,21240,21259,21138,17895],\"options\":{\"type\":\"bar\",\"chartRangeMin\":0,\"chartRangeMax\":64253,\"barColor\":\"#FF934F\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"e5d93c2e80bebd3f3fe41d9d28b01296"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-74aa5655b5cbc07fdc7f","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-74aa5655b5cbc07fdc7f"},"children":["{\"x\":{\"values\":[27384,27259,27209,27209,27170,23799],\"options\":{\"type\":\"bar\",\"chartRangeMin\":0,\"chartRangeMax\":64253,\"barColor\":\"#FF934F\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"2d7ff8d72ef2029f42ebb22bec2d9040"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-04b78008eada3c7f8473","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-04b78008eada3c7f8473"},"children":["{\"x\":{\"values\":[22079,21988,21899,21956,21869,19414],\"options\":{\"type\":\"bar\",\"chartRangeMin\":0,\"chartRangeMax\":64253,\"barColor\":\"#FF934F\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"294cd41b15c50a059f3616a54af46369"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-21252398d91a94a30790","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-21252398d91a94a30790"},"children":["{\"x\":{\"values\":[40207,39574,39529,39517,39468,36434],\"options\":{\"type\":\"bar\",\"chartRangeMin\":0,\"chartRangeMax\":64253,\"barColor\":\"#FF934F\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"62b9446755c787eaaca74ca70c0e048e"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-98d86913533068e7fdb5","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-98d86913533068e7fdb5"},"children":["{\"x\":{\"values\":[28422,28333,28273,28296,28229,25588],\"options\":{\"type\":\"bar\",\"chartRangeMin\":0,\"chartRangeMax\":64253,\"barColor\":\"#FF934F\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"05b770509d994c7a62fdf49603f24ad1"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-adb6c88b669f5ce599ca","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-adb6c88b669f5ce599ca"},"children":["{\"x\":{\"values\":[27393,27264,27200,27221,27148,24276],\"options\":{\"type\":\"bar\",\"chartRangeMin\":0,\"chartRangeMax\":64253,\"barColor\":\"#FF934F\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"47e832db065711cef6f497b75adc59cf"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-426134bc1e7416040a49","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-426134bc1e7416040a49"},"children":["{\"x\":{\"values\":[32249,32105,32049,32060,31988,28465],\"options\":{\"type\":\"bar\",\"chartRangeMin\":0,\"chartRangeMax\":64253,\"barColor\":\"#FF934F\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"9d07b16bc364cc992ac7e5929835306d"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-ca93a162ab9ab7285e26","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-ca93a162ab9ab7285e26"},"children":["{\"x\":{\"values\":[29559,29426,29381,29393,29354,26107],\"options\":{\"type\":\"bar\",\"chartRangeMin\":0,\"chartRangeMax\":64253,\"barColor\":\"#FF934F\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"edd3b1b1b2f5c1f5a49ea893e7a11711"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-58aecbf920fd709a4f91","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-58aecbf920fd709a4f91"},"children":["{\"x\":{\"values\":[27258,27117,27019,27062,26994,24045],\"options\":{\"type\":\"bar\",\"chartRangeMin\":0,\"chartRangeMax\":64253,\"barColor\":\"#FF934F\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"ebf494527d8057738f381b1c566cc44b"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-35a01ba5c9aebbed21c1","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-35a01ba5c9aebbed21c1"},"children":["{\"x\":{\"values\":[26474,26057,25957,25999,25897,24239],\"options\":{\"type\":\"bar\",\"chartRangeMin\":0,\"chartRangeMax\":64253,\"barColor\":\"#FF934F\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"29dc70b40e2aa44d4ac60a4a16c38349"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-6661f17ca3e3fe4fcde4","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-6661f17ca3e3fe4fcde4"},"children":["{\"x\":{\"values\":[38295,38013,37918,37978,37849,36990],\"options\":{\"type\":\"bar\",\"chartRangeMin\":0,\"chartRangeMax\":64253,\"barColor\":\"#FF934F\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"d57420c468789cfd6d69d5cc6c6e4516"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-e1a8b40e24f3ffb19d27","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-e1a8b40e24f3ffb19d27"},"children":["{\"x\":{\"values\":[30146,29770,29682,29742,29639,27849],\"options\":{\"type\":\"bar\",\"chartRangeMin\":0,\"chartRangeMax\":64253,\"barColor\":\"#FF934F\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"c38a2f4fc81773d2666b665ef07ae881"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-d4db32e2f4ea60d12792","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-d4db32e2f4ea60d12792"},"children":["{\"x\":{\"values\":[64253,64178,64005,64080,63429,48924],\"options\":{\"type\":\"bar\",\"chartRangeMin\":0,\"chartRangeMax\":64253,\"barColor\":\"#FF934F\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"865d896cb4aa2201e1b1757f52e6734b"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-76efb9a06cab9071d841","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-76efb9a06cab9071d841"},"children":["{\"x\":{\"values\":[45465,45446,45312,45346,44966,36301],\"options\":{\"type\":\"bar\",\"chartRangeMin\":0,\"chartRangeMax\":64253,\"barColor\":\"#FF934F\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"69f7c174a1eb04f8a6f16b37d638077c"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-d7898bcdd7df092cc37c","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-d7898bcdd7df092cc37c"},"children":["{\"x\":{\"values\":[42783,42757,42584,42644,42202,31084],\"options\":{\"type\":\"bar\",\"chartRangeMin\":0,\"chartRangeMax\":64253,\"barColor\":\"#FF934F\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"d186ded24525c54ea2057783d5acf11b"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-dbee5b2fe2f7913276a8","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-dbee5b2fe2f7913276a8"},"children":["{\"x\":{\"values\":[50884,50763,50579,50569,49971,22949],\"options\":{\"type\":\"bar\",\"chartRangeMin\":0,\"chartRangeMax\":64253,\"barColor\":\"#FF934F\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"0565e6ed698c88ab1786f373acbd831f"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-2f56b1edc7518eee8c3d","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-2f56b1edc7518eee8c3d"},"children":["{\"x\":{\"values\":[35560,35466,35368,35369,35022,22338],\"options\":{\"type\":\"bar\",\"chartRangeMin\":0,\"chartRangeMax\":64253,\"barColor\":\"#FF934F\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"9e0bc51b6c75cf10edab716a851c1b7d"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-77738d8c8f6f49f04846","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-77738d8c8f6f49f04846"},"children":["{\"x\":{\"values\":[33745,33545,33343,33396,32797,22421],\"options\":{\"type\":\"bar\",\"chartRangeMin\":0,\"chartRangeMax\":64253,\"barColor\":\"#FF934F\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"03e99ea0ade7bdfd081eb34b70b4631b"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-b333bd31ab0eacf44669","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-b333bd31ab0eacf44669"},"children":["{\"x\":{\"values\":[25777,24025,23944,23917,23775,16167],\"options\":{\"type\":\"bar\",\"chartRangeMin\":0,\"chartRangeMax\":64253,\"barColor\":\"#FF934F\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"27f32c697f5d1d3ce23f3699c0c7fce1"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-624585615af0d47c193d","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-624585615af0d47c193d"},"children":["{\"x\":{\"values\":[45433,45241,45196,45188,45081,43798],\"options\":{\"type\":\"bar\",\"chartRangeMin\":0,\"chartRangeMax\":64253,\"barColor\":\"#FF934F\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"ab4345209e2b5b2d7addf0a4b081418e"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-885e5bf52e75170a2cab","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-885e5bf52e75170a2cab"},"children":["{\"x\":{\"values\":[32140,31226,31111,31179,31010,21901],\"options\":{\"type\":\"bar\",\"chartRangeMin\":0,\"chartRangeMax\":64253,\"barColor\":\"#FF934F\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"34ffd36548017aa9c68783ee0994d8ac"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-cce1179834f7b3a1e26a","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-cce1179834f7b3a1e26a"},"children":["{\"x\":{\"values\":[23072,22774,22678,22679,22498,19843],\"options\":{\"type\":\"bar\",\"chartRangeMin\":0,\"chartRangeMax\":64253,\"barColor\":\"#FF934F\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"16e7b6c1fc9c337a2e9ee8af45cac2d1"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-389531235d83c5b76245","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-389531235d83c5b76245"},"children":["{\"x\":{\"values\":[26112,25988,25904,25866,25737,24156],\"options\":{\"type\":\"bar\",\"chartRangeMin\":0,\"chartRangeMax\":64253,\"barColor\":\"#FF934F\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"2dec9081830538de2c2c42635d2d4b20"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-31504233b62c39f20bf3","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-31504233b62c39f20bf3"},"children":["{\"x\":{\"values\":[21156,21043,20877,20942,20757,19030],\"options\":{\"type\":\"bar\",\"chartRangeMin\":0,\"chartRangeMax\":64253,\"barColor\":\"#FF934F\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]}],"align":"right"}],"defaultPageSize":10,"showPageSizeOptions":true,"pageSizeOptions":[10,20,30],"paginationType":"numbers","showPageInfo":true,"minRows":1,"highlight":true,"borderless":true,"dataKey":"e160cd239e624e7333b4c5e585d706d4"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<p><br/></p>
+</div>
+<div id="assign-taxonomy" class="section level3">
+<h3>Assign taxonomy</h3>
+<pre class="r"><code>taxa &lt;- assignTaxonomy(seqtab_subset.nochim, &quot;../silva_nr_v132_train_set.fa.gz&quot;, multithread=TRUE)
+
+taxa.print &lt;- taxa # Removing sequence rownames for display only
+rownames(taxa.print) &lt;- NULL
+head(taxa.print)</code></pre>
+<div id="htmlwidget-2b543b715f7abbd63729" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-2b543b715f7abbd63729">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Kingdom":["Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Eukaryota","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria","Bacteria"],"Phylum":["Proteobacteria","Proteobacteria","Proteobacteria","Firmicutes","Proteobacteria","Proteobacteria","Proteobacteria","Proteobacteria","Proteobacteria","Proteobacteria","Proteobacteria","Proteobacteria","Firmicutes","Proteobacteria","Proteobacteria","Proteobacteria","Proteobacteria","Proteobacteria","Proteobacteria","Firmicutes","Firmicutes","Proteobacteria","Proteobacteria","Proteobacteria","Firmicutes","Firmicutes","Firmicutes","Proteobacteria","Proteobacteria","Firmicutes","Firmicutes","Firmicutes","Firmicutes","Proteobacteria","Firmicutes","Proteobacteria","Firmicutes","Firmicutes","Proteobacteria","Firmicutes","RsaHf231","Firmicutes","Proteobacteria","Firmicutes","Firmicutes","Firmicutes","Proteobacteria","Firmicutes","Proteobacteria","Proteobacteria","Proteobacteria","Firmicutes","Proteobacteria","Firmicutes","Firmicutes","Proteobacteria","Proteobacteria","Proteobacteria","Firmicutes","Proteobacteria","Firmicutes","Firmicutes","Firmicutes","Proteobacteria","Firmicutes","Firmicutes","Proteobacteria","Firmicutes","Proteobacteria","Proteobacteria","Proteobacteria","Proteobacteria","Proteobacteria","Proteobacteria","Firmicutes","Firmicutes","Firmicutes","Firmicutes","Firmicutes","Firmicutes","Proteobacteria","Proteobacteria","Firmicutes","Proteobacteria","Firmicutes","Firmicutes","Firmicutes","Firmicutes","Firmicutes","Firmicutes","Firmicutes","Firmicutes","Firmicutes","Firmicutes","Firmicutes","Firmicutes","Proteobacteria","Proteobacteria","Proteobacteria","Proteobacteria","Proteobacteria","Proteobacteria","Proteobacteria","Proteobacteria","Proteobacteria","Firmicutes","Proteobacteria","Firmicutes","Firmicutes","Proteobacteria","Proteobacteria","Firmicutes","Proteobacteria","Proteobacteria","Proteobacteria","Firmicutes","Proteobacteria","Firmicutes","Firmicutes","Firmicutes","Firmicutes","Firmicutes","Firmicutes","Firmicutes","Proteobacteria","Proteobacteria","Firmicutes","Firmicutes","Actinobacteria","Actinobacteria","Firmicutes","Firmicutes","Firmicutes","Proteobacteria","Firmicutes","Proteobacteria","Firmicutes","Proteobacteria","Proteobacteria","Firmicutes","Firmicutes","Proteobacteria","Actinobacteria","Proteobacteria","Firmicutes","Proteobacteria","Proteobacteria","Proteobacteria","Firmicutes","Proteobacteria","Proteobacteria","Proteobacteria","Actinobacteria","Firmicutes","Firmicutes","Proteobacteria","Firmicutes","Proteobacteria","Firmicutes","Proteobacteria","Proteobacteria","Proteobacteria","Firmicutes","Proteobacteria","Proteobacteria","Proteobacteria","Firmicutes","Firmicutes","Proteobacteria","Proteobacteria","Firmicutes","Firmicutes","Proteobacteria","Actinobacteria","Firmicutes","Proteobacteria","Firmicutes","Proteobacteria","Firmicutes","Proteobacteria","Firmicutes","Proteobacteria","Firmicutes","Firmicutes","Firmicutes","Firmicutes","Proteobacteria","Firmicutes","Firmicutes","Firmicutes","Firmicutes","Firmicutes","Proteobacteria","Proteobacteria","Actinobacteria","Firmicutes","Firmicutes","Firmicutes","Proteobacteria","Firmicutes","Proteobacteria","Firmicutes","Proteobacteria","Firmicutes","Firmicutes","Bacteroidetes","Firmicutes","Actinobacteria","Firmicutes","Proteobacteria","Firmicutes","Actinobacteria","Firmicutes","Firmicutes","Firmicutes","Firmicutes","Firmicutes","Proteobacteria","Firmicutes","Firmicutes","Firmicutes","Firmicutes","Firmicutes","Firmicutes","Proteobacteria","Proteobacteria","Firmicutes","Proteobacteria","Firmicutes","Firmicutes","Firmicutes","Firmicutes","Firmicutes","Proteobacteria","Proteobacteria","Proteobacteria","Proteobacteria","Proteobacteria","Firmicutes","Proteobacteria","Proteobacteria","Firmicutes","Proteobacteria","Firmicutes","Firmicutes","Firmicutes","Firmicutes","Firmicutes",null,"Firmicutes","Firmicutes","Firmicutes","Proteobacteria","Firmicutes","Proteobacteria","Proteobacteria","Proteobacteria","Proteobacteria","Actinobacteria","Proteobacteria","Firmicutes","Actinobacteria","Firmicutes","Actinobacteria","Firmicutes","Proteobacteria","Proteobacteria","Firmicutes","Proteobacteria","Proteobacteria","Firmicutes","Firmicutes","Tenericutes","Firmicutes","Firmicutes","RsaHf231","Actinobacteria","Proteobacteria","Proteobacteria","Firmicutes","Firmicutes","Firmicutes","Firmicutes","Proteobacteria","Proteobacteria","Proteobacteria","Proteobacteria","Proteobacteria","Firmicutes","Actinobacteria","Proteobacteria","Firmicutes","Firmicutes","Firmicutes","Proteobacteria","Proteobacteria","Firmicutes","Firmicutes","Proteobacteria","Firmicutes","Proteobacteria","Proteobacteria","Proteobacteria","Actinobacteria","Proteobacteria","Firmicutes","Proteobacteria","Actinobacteria","Proteobacteria",null,"Proteobacteria","Actinobacteria","Actinobacteria","Firmicutes","Firmicutes","Firmicutes","Proteobacteria","Firmicutes","Firmicutes","Firmicutes","Proteobacteria","Proteobacteria","Firmicutes","Proteobacteria","Firmicutes","Proteobacteria","Firmicutes","Proteobacteria","Proteobacteria","Firmicutes","Proteobacteria","Proteobacteria","Firmicutes","Actinobacteria",null,"Firmicutes","Firmicutes","Firmicutes","Proteobacteria","Cyanobacteria","Proteobacteria","Proteobacteria","Proteobacteria","Firmicutes","Tenericutes","Proteobacteria","Firmicutes","Proteobacteria","Proteobacteria","Actinobacteria","Proteobacteria","Proteobacteria","Firmicutes","Firmicutes","Proteobacteria","Tenericutes","Actinobacteria","Actinobacteria","Actinobacteria","Proteobacteria","Actinobacteria","Actinobacteria","Firmicutes","Proteobacteria","Proteobacteria","Proteobacteria","Proteobacteria","Proteobacteria","Proteobacteria","Proteobacteria","Firmicutes","Firmicutes","Proteobacteria","Actinobacteria","Actinobacteria","Actinobacteria","Firmicutes","Firmicutes","Actinobacteria","Firmicutes","Firmicutes","Actinobacteria","Actinobacteria","Actinobacteria","Bacteroidetes","Actinobacteria","Firmicutes","Firmicutes","Firmicutes","Firmicutes","Firmicutes","Firmicutes","Firmicutes","Proteobacteria","Firmicutes","Firmicutes","Firmicutes"],"Class":["Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Bacilli","Bacilli","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Bacilli","Bacilli","Bacilli","Gammaproteobacteria","Gammaproteobacteria","Bacilli","Bacilli","Bacilli","Bacilli","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Bacilli","Bacilli","Gammaproteobacteria","Bacilli",null,"Bacilli","Gammaproteobacteria","Bacilli","Bacilli","Bacilli","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Bacilli","Bacilli","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Bacilli","Bacilli","Bacilli","Gammaproteobacteria","Bacilli","Bacilli","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Bacilli","Bacilli","Bacilli","Bacilli","Bacilli","Bacilli","Gammaproteobacteria","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Bacilli","Bacilli","Bacilli","Bacilli","Bacilli","Bacilli","Bacilli","Bacilli","Bacilli","Bacilli","Bacilli","Bacilli","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Bacilli","Bacilli","Gammaproteobacteria","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Bacilli","Bacilli","Bacilli","Bacilli","Bacilli","Bacilli","Bacilli","Gammaproteobacteria","Gammaproteobacteria","Bacilli","Bacilli","Actinobacteria","Actinobacteria","Bacilli","Bacilli","Bacilli","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Gammaproteobacteria","Bacilli","Bacilli","Gammaproteobacteria","Actinobacteria","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Actinobacteria","Bacilli","Bacilli","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Bacilli","Bacilli","Gammaproteobacteria","Gammaproteobacteria","Clostridia","Erysipelotrichia","Gammaproteobacteria","Actinobacteria","Bacilli","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Bacilli","Bacilli","Bacilli","Bacilli","Gammaproteobacteria","Bacilli","Bacilli","Clostridia","Bacilli","Bacilli","Gammaproteobacteria","Gammaproteobacteria","Actinobacteria","Bacilli","Clostridia","Clostridia","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Bacilli","Erysipelotrichia","Bacteroidia","Bacilli","Actinobacteria","Bacilli","Gammaproteobacteria","Bacilli","Thermoleophilia","Bacilli","Clostridia","Bacilli","Bacilli","Bacilli","Gammaproteobacteria","Clostridia","Bacilli","Clostridia","Bacilli","Bacilli","Bacilli","Gammaproteobacteria","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Bacilli","Bacilli","Clostridia","Bacilli","Bacilli","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Bacilli","Bacilli","Bacilli","Bacilli","Bacilli",null,"Bacilli","Bacilli","Bacilli","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Actinobacteria","Gammaproteobacteria","Clostridia","Actinobacteria","Clostridia","Actinobacteria","Bacilli","Gammaproteobacteria","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Gammaproteobacteria","Bacilli","Bacilli","Mollicutes","Bacilli","Bacilli",null,"Actinobacteria","Gammaproteobacteria","Gammaproteobacteria","Bacilli","Bacilli","Bacilli","Bacilli","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Bacilli","Thermoleophilia","Gammaproteobacteria","Bacilli","Bacilli","Bacilli","Gammaproteobacteria","Gammaproteobacteria","Bacilli","Bacilli","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Thermoleophilia","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Thermoleophilia","Gammaproteobacteria",null,"Gammaproteobacteria","Thermoleophilia","Actinobacteria","Bacilli","Bacilli","Clostridia","Gammaproteobacteria","Bacilli","Bacilli","Bacilli","Gammaproteobacteria","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Negativicutes","Gammaproteobacteria","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Gammaproteobacteria","Bacilli","Actinobacteria",null,"Bacilli","Clostridia","Bacilli","Gammaproteobacteria","Oxyphotobacteria","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Bacilli","Mollicutes","Gammaproteobacteria","Bacilli","Gammaproteobacteria","Gammaproteobacteria","Thermoleophilia","Gammaproteobacteria","Gammaproteobacteria","Bacilli","Bacilli","Gammaproteobacteria","Mollicutes","Actinobacteria","Actinobacteria","Actinobacteria","Gammaproteobacteria","Actinobacteria","Actinobacteria","Bacilli","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Gammaproteobacteria","Bacilli","Bacilli","Gammaproteobacteria","Actinobacteria","Actinobacteria","Actinobacteria","Bacilli","Clostridia","Actinobacteria","Bacilli","Clostridia","Actinobacteria","Actinobacteria","Actinobacteria","Bacteroidia","Actinobacteria","Bacilli","Bacilli","Bacilli","Bacilli","Bacilli","Bacilli","Bacilli","Gammaproteobacteria","Bacilli","Bacilli","Bacilli"],"Order":["Betaproteobacteriales","Enterobacteriales","Betaproteobacteriales","Lactobacillales","Enterobacteriales","Enterobacteriales","Enterobacteriales","Betaproteobacteriales","Enterobacteriales","Enterobacteriales","Enterobacteriales","Pseudomonadales","Lactobacillales","Enterobacteriales","Xanthomonadales","Betaproteobacteriales","Betaproteobacteriales","Enterobacteriales","Enterobacteriales","Lactobacillales","Bacillales","Enterobacteriales","Enterobacteriales","Pseudomonadales","Lactobacillales","Bacillales","Lactobacillales","Xanthomonadales","Betaproteobacteriales","Bacillales","Bacillales","Lactobacillales","Lactobacillales","Enterobacteriales","Bacillales","Enterobacteriales","Lactobacillales","Bacillales","Pseudomonadales","Lactobacillales",null,"Bacillales","Enterobacteriales","Lactobacillales","Lactobacillales","Lactobacillales","Enterobacteriales","Lactobacillales","Betaproteobacteriales","Enterobacteriales","Pseudomonadales","Lactobacillales","Enterobacteriales","Bacillales","Lactobacillales","Enterobacteriales","Enterobacteriales","Betaproteobacteriales","Lactobacillales","Betaproteobacteriales","Lactobacillales","Bacillales","Bacillales","Pseudomonadales","Bacillales","Bacillales","Enterobacteriales","Bacillales","Enterobacteriales","Pseudomonadales","Enterobacteriales","Pseudomonadales","Enterobacteriales","Xanthomonadales","Lactobacillales","Bacillales","Lactobacillales","Lactobacillales","Bacillales","Bacillales","Xanthomonadales","Enterobacteriales","Bacillales","Pseudomonadales","Lactobacillales","Bacillales","Bacillales","Bacillales","Lactobacillales","Bacillales","Bacillales","Bacillales","Bacillales","Lactobacillales","Bacillales","Bacillales","Betaproteobacteriales","Pseudomonadales","Pseudomonadales","Betaproteobacteriales","Xanthomonadales","Enterobacteriales","Xanthomonadales","Pseudomonadales","Pseudomonadales","Lactobacillales","Betaproteobacteriales","Lactobacillales","Lactobacillales","Pseudomonadales","Pseudomonadales","Bacillales","Betaproteobacteriales","Betaproteobacteriales","Pseudomonadales","Bacillales","Enterobacteriales","Lactobacillales","Bacillales","Bacillales","Bacillales","Lactobacillales","Lactobacillales","Bacillales","Enterobacteriales","Betaproteobacteriales","Bacillales","Lactobacillales","Micrococcales","Micrococcales","Bacillales","Bacillales","Bacillales","Pseudomonadales","Bacillales","Xanthomonadales","Lactobacillales","Enterobacteriales","Pseudomonadales","Lactobacillales","Bacillales","Betaproteobacteriales","Micrococcales","Enterobacteriales","Bacillales","Betaproteobacteriales","Betaproteobacteriales","Pseudomonadales","Bacillales","Betaproteobacteriales","Pseudomonadales","Betaproteobacteriales","Micrococcales","Bacillales","Bacillales","Enterobacteriales","Bacillales","Betaproteobacteriales","Lactobacillales","Pseudomonadales","Betaproteobacteriales","Betaproteobacteriales","Bacillales","Enterobacteriales","Betaproteobacteriales","Betaproteobacteriales","Lactobacillales","Bacillales","Enterobacteriales","Pseudomonadales","Clostridiales","Erysipelotrichales","Betaproteobacteriales","Micrococcales","Bacillales","Betaproteobacteriales","Bacillales","Xanthomonadales","Bacillales","Enterobacteriales","Bacillales","Enterobacteriales","Bacillales","Lactobacillales","Lactobacillales","Bacillales","Pseudomonadales","Bacillales","Bacillales","Clostridiales","Bacillales","Bacillales","Pseudomonadales","Betaproteobacteriales","Micrococcales","Lactobacillales","Clostridiales","Clostridiales","Pseudomonadales","Bacillales","Enterobacteriales","Bacillales","Betaproteobacteriales","Bacillales","Erysipelotrichales","Flavobacteriales","Bacillales","Micrococcales","Bacillales","Pseudomonadales","Bacillales","Solirubrobacterales","Bacillales","Clostridiales","Bacillales","Bacillales","Lactobacillales","Pasteurellales","Clostridiales","Bacillales","Clostridiales","Bacillales","Bacillales","Lactobacillales","Betaproteobacteriales","Pseudomonadales","Bacillales","Pseudomonadales","Lactobacillales","Bacillales","Clostridiales","Bacillales","Lactobacillales","Pseudomonadales","Betaproteobacteriales","Pseudomonadales","Enterobacteriales",null,"Lactobacillales","Betaproteobacteriales","Betaproteobacteriales","Bacillales","Betaproteobacteriales","Lactobacillales","Bacillales","Bacillales","Lactobacillales","Bacillales",null,"Bacillales","Bacillales","Lactobacillales","Betaproteobacteriales","Lactobacillales","Enterobacteriales","Xanthomonadales","Betaproteobacteriales","Pseudomonadales","Micrococcales","Enterobacteriales","Clostridiales","Micrococcales","Clostridiales","Micrococcales","Lactobacillales","Betaproteobacteriales","Pseudomonadales","Bacillales","Enterobacteriales","Pseudomonadales","Lactobacillales","Lactobacillales","Entomoplasmatales","Lactobacillales","Lactobacillales",null,"Micrococcales","Betaproteobacteriales","Pseudomonadales","Bacillales","Bacillales","Lactobacillales","Bacillales","Betaproteobacteriales","Betaproteobacteriales","Betaproteobacteriales","Pseudomonadales","Pseudomonadales","Bacillales","Solirubrobacterales","Enterobacteriales","Bacillales","Lactobacillales","Bacillales","Enterobacteriales","Enterobacteriales","Bacillales","Bacillales","Betaproteobacteriales","Lactobacillales","Enterobacteriales","Betaproteobacteriales","Pseudomonadales","Gaiellales","Betaproteobacteriales","Bacillales","Betaproteobacteriales",null,"Betaproteobacteriales",null,"Betaproteobacteriales","Solirubrobacterales","Micrococcales","Lactobacillales","Bacillales","Clostridiales","Enterobacteriales","Bacillales","Bacillales","Bacillales","Pseudomonadales","Betaproteobacteriales","Bacillales","Enterobacteriales","Bacillales","Betaproteobacteriales","Selenomonadales","Betaproteobacteriales","Betaproteobacteriales","Bacillales","Xanthomonadales","Betaproteobacteriales","Lactobacillales","Micrococcales",null,"Lactobacillales","Clostridiales","Lactobacillales","Pseudomonadales","Chloroplast","Pasteurellales","Pseudomonadales","Xanthomonadales","Lactobacillales","Mycoplasmatales","Betaproteobacteriales","Bacillales","Pseudomonadales","Betaproteobacteriales","Gaiellales","Betaproteobacteriales","Betaproteobacteriales","Bacillales","Bacillales","Vibrionales","Haloplasmatales","Micrococcales","Corynebacteriales","Micrococcales","Betaproteobacteriales","Micrococcales","Micrococcales","Bacillales","Pseudomonadales","Betaproteobacteriales","Pseudomonadales","Pasteurellales","Pseudomonadales","Betaproteobacteriales","Pseudomonadales","Bacillales","Bacillales","Pseudomonadales","Micrococcales","Micrococcales","Micrococcales","Bacillales","Clostridiales","Micrococcales","Bacillales","Clostridiales","Micrococcales","Corynebacteriales","Micrococcales","Flavobacteriales","Micrococcales","Bacillales","Bacillales","Bacillales","Bacillales","Bacillales","Bacillales","Bacillales","Betaproteobacteriales","Bacillales","Bacillales","Bacillales"],"Family":["Burkholderiaceae","Enterobacteriaceae","Burkholderiaceae","Enterococcaceae","Enterobacteriaceae","Enterobacteriaceae","Enterobacteriaceae","Burkholderiaceae","Enterobacteriaceae","Enterobacteriaceae","Enterobacteriaceae","Moraxellaceae","Enterococcaceae","Enterobacteriaceae","Xanthomonadaceae","Burkholderiaceae","Burkholderiaceae","Enterobacteriaceae","Enterobacteriaceae","Enterococcaceae","Bacillaceae","Enterobacteriaceae","Enterobacteriaceae","Moraxellaceae","Enterococcaceae","Staphylococcaceae","Enterococcaceae","Xanthomonadaceae","Burkholderiaceae","Staphylococcaceae","Bacillaceae","Aerococcaceae","Enterococcaceae","Enterobacteriaceae","Bacillaceae","Enterobacteriaceae","Enterococcaceae","Bacillaceae","Moraxellaceae","Enterococcaceae",null,"Planococcaceae","Enterobacteriaceae","Aerococcaceae","Carnobacteriaceae","Enterococcaceae","Enterobacteriaceae","Aerococcaceae","Burkholderiaceae","Enterobacteriaceae","Moraxellaceae","Enterococcaceae","Enterobacteriaceae","Bacillaceae","Aerococcaceae","Enterobacteriaceae","Enterobacteriaceae","Burkholderiaceae","Enterococcaceae","Burkholderiaceae","Enterococcaceae","Bacillaceae","Bacillaceae","Moraxellaceae","Staphylococcaceae","Paenibacillaceae","Enterobacteriaceae","Staphylococcaceae","Enterobacteriaceae","Moraxellaceae","Enterobacteriaceae","Pseudomonadaceae","Enterobacteriaceae","Xanthomonadaceae","Enterococcaceae","Bacillaceae","Enterococcaceae","Enterococcaceae","Bacillaceae","Bacillaceae","Xanthomonadaceae","Enterobacteriaceae","Bacillaceae","Moraxellaceae","Enterococcaceae","Paenibacillaceae","Bacillaceae","Bacillaceae","Enterococcaceae","Bacillaceae","Bacillaceae","Bacillaceae","Bacillaceae","Enterococcaceae","Bacillaceae","Bacillaceae","Burkholderiaceae","Moraxellaceae","Moraxellaceae","Burkholderiaceae","Xanthomonadaceae","Enterobacteriaceae","Xanthomonadaceae","Pseudomonadaceae","Pseudomonadaceae","Enterococcaceae","Burkholderiaceae","Enterococcaceae","Enterococcaceae","Moraxellaceae","Moraxellaceae","Staphylococcaceae","Burkholderiaceae","Burkholderiaceae","Pseudomonadaceae","Bacillaceae","Enterobacteriaceae","Enterococcaceae","Bacillaceae","Listeriaceae","Bacillaceae","Enterococcaceae","Enterococcaceae","Staphylococcaceae","Enterobacteriaceae","Burkholderiaceae","Bacillaceae","Lactobacillaceae",null,"Beutenbergiaceae","Staphylococcaceae","Paenibacillaceae","Bacillaceae","Moraxellaceae","Bacillaceae","Xanthomonadaceae","Carnobacteriaceae","Enterobacteriaceae","Moraxellaceae","Streptococcaceae","Staphylococcaceae","Burkholderiaceae","Beutenbergiaceae","Enterobacteriaceae","Staphylococcaceae","Burkholderiaceae","Neisseriaceae","Pseudomonadaceae","Bacillaceae","Burkholderiaceae","Moraxellaceae","Burkholderiaceae",null,"Paenibacillaceae","Staphylococcaceae","Enterobacteriaceae","Bacillaceae","Burkholderiaceae","Aerococcaceae","Moraxellaceae","Burkholderiaceae","Burkholderiaceae","Bacillaceae","Enterobacteriaceae","Burkholderiaceae","Neisseriaceae","Enterococcaceae","Bacillaceae","Enterobacteriaceae","Pseudomonadaceae","Lachnospiraceae","Erysipelotrichaceae","Burkholderiaceae",null,"Staphylococcaceae","Burkholderiaceae","Planococcaceae","Xanthomonadaceae","Bacillaceae","Enterobacteriaceae","Bacillaceae","Enterobacteriaceae","Bacillaceae","Streptococcaceae","Enterococcaceae","Staphylococcaceae","Moraxellaceae","Bacillaceae","Paenibacillaceae","Lachnospiraceae","Bacillaceae","Bacillaceae","Moraxellaceae","Rhodocyclaceae",null,"Carnobacteriaceae","Peptostreptococcaceae","Lachnospiraceae","Pseudomonadaceae","Staphylococcaceae","Enterobacteriaceae","Bacillaceae","Burkholderiaceae","Bacillaceae","Erysipelotrichaceae","Flavobacteriaceae","Bacillaceae",null,"Bacillaceae","Pseudomonadaceae","Bacillaceae",null,"Bacillaceae","Lachnospiraceae","Planococcaceae","Bacillaceae","Aerococcaceae","Pasteurellaceae","Peptococcaceae","Staphylococcaceae","Peptostreptococcaceae","Bacillaceae","Bacillaceae","Lactobacillaceae","Burkholderiaceae","Pseudomonadaceae","Staphylococcaceae","Pseudomonadaceae","Enterococcaceae","Bacillaceae","Lachnospiraceae","Bacillaceae","Lactobacillaceae","Pseudomonadaceae","Burkholderiaceae","Moraxellaceae","Enterobacteriaceae",null,"Enterococcaceae","Burkholderiaceae","Burkholderiaceae","Bacillaceae","Burkholderiaceae","Enterococcaceae","Bacillaceae","Staphylococcaceae","Enterococcaceae","Bacillaceae",null,"Bacillaceae","Bacillaceae","Streptococcaceae","Burkholderiaceae","Leuconostocaceae","Enterobacteriaceae","Xanthomonadaceae","Burkholderiaceae","Moraxellaceae","Beutenbergiaceae","Enterobacteriaceae","Lachnospiraceae","Beutenbergiaceae","Lachnospiraceae","Micrococcaceae","Streptococcaceae","Burkholderiaceae","Pseudomonadaceae","Bacillaceae","Enterobacteriaceae","Moraxellaceae","Lactobacillaceae","Streptococcaceae","Spiroplasmataceae","Enterococcaceae","Enterococcaceae",null,null,"Burkholderiaceae","Pseudomonadaceae","Bacillaceae","Family_XII","Enterococcaceae","Family_XI","Burkholderiaceae","Burkholderiaceae","Burkholderiaceae","Pseudomonadaceae","Moraxellaceae","Staphylococcaceae",null,"Enterobacteriaceae","Bacillaceae","Aerococcaceae","Planococcaceae","Enterobacteriaceae","Enterobacteriaceae","Bacillaceae","Bacillaceae","Burkholderiaceae","Streptococcaceae","Enterobacteriaceae","Neisseriaceae","Pseudomonadaceae",null,"Burkholderiaceae","Bacillaceae","Burkholderiaceae",null,"Neisseriaceae",null,"Burkholderiaceae","67-14",null,null,"Bacillaceae","Lachnospiraceae","Enterobacteriaceae","Bacillaceae","Bacillaceae","Bacillaceae","Moraxellaceae","Burkholderiaceae","Planococcaceae","Enterobacteriaceae","Paenibacillaceae","Burkholderiaceae","Veillonellaceae","Burkholderiaceae","Burkholderiaceae","Bacillaceae","Xanthomonadaceae","Burkholderiaceae","Enterococcaceae","Brevibacteriaceae",null,"Aerococcaceae","Lachnospiraceae","Leuconostocaceae","Moraxellaceae",null,"Pasteurellaceae","Pseudomonadaceae","Xanthomonadaceae","Leuconostocaceae","Mycoplasmataceae","Neisseriaceae","Paenibacillaceae","Pseudomonadaceae","Burkholderiaceae","Gaiellaceae","Burkholderiaceae","Burkholderiaceae","Bacillaceae","Bacillaceae","Vibrionaceae","Haloplasmataceae",null,null,"Microbacteriaceae","Burkholderiaceae","Brevibacteriaceae","Microbacteriaceae","Bacillaceae","Pseudomonadaceae","Burkholderiaceae","Pseudomonadaceae","Pasteurellaceae","Moraxellaceae","Burkholderiaceae","Moraxellaceae","Bacillaceae","Planococcaceae","Pseudomonadaceae","Micrococcaceae",null,null,"Planococcaceae","Peptostreptococcaceae",null,"Bacillaceae","Lachnospiraceae","Micrococcaceae","Corynebacteriaceae","Micrococcaceae","Flavobacteriaceae","Microbacteriaceae","Bacillaceae","Bacillaceae","Bacillaceae","Planococcaceae","Bacillaceae","Bacillaceae","Bacillaceae","Burkholderiaceae","Bacillaceae","Bacillaceae","Planococcaceae"],"Genus":["Burkholderia-Caballeronia-Paraburkholderia","Morganella","Burkholderia-Caballeronia-Paraburkholderia","Melissococcus","Escherichia/Shigella","Morganella","Providencia","Cupriavidus","Providencia","Proteus","Proteus","Acinetobacter","Enterococcus","Providencia","Stenotrophomonas","Ralstonia","Burkholderia-Caballeronia-Paraburkholderia","Morganella","Salmonella","Enterococcus","Pseudogracilibacillus","Proteus","Klebsiella","Acinetobacter","Melissococcus","Staphylococcus","Enterococcus","Stenotrophomonas","Delftia","Staphylococcus","Bacillus","Globicatella","Enterococcus","Salmonella","Oceanobacillus","Klebsiella",null,"Natronobacillus","Acinetobacter","Melissococcus",null,"Sporosarcina","Escherichia/Shigella","Globicatella","Atopostipes","Melissococcus","Klebsiella","Globicatella","Delftia","Providencia","Acinetobacter","Melissococcus","Escherichia/Shigella","Amphibacillus","Globicatella","Klebsiella","Klebsiella","Paenalcaligenes","Enterococcus","Delftia","Enterococcus",null,"Bacillus","Acinetobacter","Staphylococcus","Paenibacillus","Providencia","Staphylococcus","Klebsiella","Acinetobacter","Klebsiella","Pseudomonas","Klebsiella","Stenotrophomonas","Enterococcus",null,"Enterococcus","Enterococcus","Bacillus",null,"Stenotrophomonas","Enterobacter",null,"Acinetobacter","Enterococcus","Paenibacillus","Bacillus","Oceanobacillus","Enterococcus","Amphibacillus","Bacillus",null,"Bacillus","Enterococcus",null,null,"Comamonas","Acinetobacter","Acinetobacter","Acidovorax","Stenotrophomonas","Enterobacter","Luteimonas","Pseudomonas","Pseudomonas","Melissococcus","Acidovorax","Enterococcus",null,"Acinetobacter","Acinetobacter","Staphylococcus","Curvibacter","Paenalcaligenes","Pseudomonas","Gracilibacillus","Salmonella","Enterococcus","Gracilibacillus","Listeria",null,"Melissococcus","Melissococcus","Staphylococcus","Morganella","Alcaligenes",null,"Lactobacillus",null,null,"Jeotgalicoccus","Paenibacillus",null,"Acinetobacter","Oceanobacillus","Stenotrophomonas","Atopostipes","Pantoea","Acinetobacter","Streptococcus","Jeotgalicoccus","Acidovorax","Miniimonas","Enterobacter","Staphylococcus","Massilia",null,"Pseudomonas","Bacillus","Acidovorax","Acinetobacter","Massilia",null,"Paenibacillus","Staphylococcus","Morganella",null,"Massilia","Globicatella","Acinetobacter","Massilia","Alcaligenes","Amphibacillus","Morganella","Massilia",null,"Enterococcus",null,"Citrobacter","Pseudomonas",null,"Erysipelothrix","Paenalcaligenes",null,"Staphylococcus","Massilia","Lysinibacillus","Stenotrophomonas",null,"Pantoea",null,"Klebsiella",null,"Streptococcus","Enterococcus","Staphylococcus","Acinetobacter","Amphibacillus","Paenibacillus",null,"Oceanobacillus","Aeribacillus","Acinetobacter","Zoogloea",null,"Atopostipes","Asaccharospora",null,"Pseudomonas","Staphylococcus","Raoultella","Oceanobacillus","Bordetella","Bacillus","Erysipelothrix",null,null,null,"Gracilibacillus","Pseudomonas","Aeribacillus",null,"Anoxybacillus",null,"Lysinibacillus",null,"Globicatella","Haemophilus","Desulfosporosinus","Staphylococcus",null,"Oceanobacillus","Ornithinibacillus","Pediococcus","Comamonas","Pseudomonas","Jeotgalicoccus","Pseudomonas","Enterococcus","Oceanobacillus",null,"Bacillus","Lactobacillus","Pseudomonas","Burkholderia-Caballeronia-Paraburkholderia","Acinetobacter","Citrobacter",null,"Enterococcus","Massilia","Diaphorobacter","Bacillus","Comamonas","Enterococcus","Aeribacillus","Staphylococcus","Melissococcus","Ornithinibacillus",null,null,"Pseudogracilibacillus","Lactococcus","Achromobacter","Weissella","Enterobacter","Stenotrophomonas","Burkholderia-Caballeronia-Paraburkholderia","Acinetobacter","Miniimonas","Morganella",null,"Miniimonas",null,"Enteractinococcus","Streptococcus","Massilia","Pseudomonas","Geobacillus","Pantoea","Acinetobacter","Lactobacillus","Streptococcus","Spiroplasma","Enterococcus","Melissococcus",null,null,"Hydrogenophaga","Pseudomonas",null,"Exiguobacterium","Vagococcus","Gemella","Pusillimonas","Delftia","Ralstonia","Pseudomonas","Acinetobacter","Staphylococcus",null,"Proteus","Anoxybacillus","Globicatella",null,"Escherichia/Shigella","Morganella",null,null,"Comamonas","Streptococcus",null,"Neisseria","Pseudomonas",null,"Janthinobacterium",null,"Achromobacter",null,null,null,"Comamonas",null,null,null,null,null,"Escherichia/Shigella","Oceanobacillus","Pseudogracilibacillus","Oceanobacillus","Enhydrobacter","Bordetella","Sporosarcina","Candidatus_Regiella","Paenibacillus","Pusillimonas","Veillonella","Methylibium","Bordetella","Salirhabdus","Pseudoxanthomonas","Acidovorax","Melissococcus","Sediminivirga",null,"Globicatella",null,"Leuconostoc","Acinetobacter",null,"Haemophilus","Pseudomonas","Pseudoxanthomonas","Leuconostoc","Mycoplasma","Neisseria","Paenibacillus","Pseudomonas",null,"Gaiella","Delftia","Burkholderia-Caballeronia-Paraburkholderia","Gracilibacillus","Oceanobacillus","Photobacterium","Haloplasma",null,null,null,null,"Sediminivirga",null,"Bacillus","Pseudomonas","Diaphorobacter","Pseudomonas","Haemophilus","Acinetobacter",null,"Acinetobacter","Bacillus","Lysinibacillus","Pseudomonas","Renibacterium",null,null,null,"Asaccharospora",null,null,"Cuneatibacter","Enteractinococcus",null,"Enteractinococcus",null,"Gulosibacter","Ornithinibacillus","Oceanobacillus","Oceanobacillus",null,null,"Bacillus","Oceanobacillus","Massilia",null,"Bacillus","Lysinibacillus"]},"columns":[{"accessor":"Kingdom","name":"Kingdom","type":"character","maxWidth":80},{"accessor":"Phylum","name":"Phylum","type":"character","maxWidth":120},{"accessor":"Class","name":"Class","type":"character","maxWidth":190},{"accessor":"Order","name":"Order","type":"character","maxWidth":180},{"accessor":"Family","name":"Family","type":"character","maxWidth":170},{"accessor":"Genus","name":"Genus","type":"character"}],"resizable":true,"searchable":true,"defaultPageSize":10,"showPageSizeOptions":true,"pageSizeOptions":[10,50,100],"paginationType":"numbers","showPageInfo":true,"minRows":1,"highlight":true,"borderless":true,"dataKey":"838d1c1915fd92688faba23a807e115d"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div id="export-results" class="section level4">
+<h4>Export results</h4>
+<pre class="r"><code>write.csv2(seqtab.nochim, &quot;../output/16S-asvmat.csv&quot;, row.names = T)
+write.csv2(taxa, &quot;../output/16S-taxmat.csv&quot;, row.names = T)</code></pre>
+<p><br/></p>
+<hr />
+<!-- Data preparation -->
+</div>
+</div>
+</div>
+<div id="data-preparation" class="section level2">
+<h2><strong>Data preparation</strong></h2>
+<div id="ordering-and-colors" class="section level3">
+<h3>Ordering and colors</h3>
+<pre class="r"><code># Default order for ID and Stage variables
+order_id &lt;- c(&#39;GS&#39;, &#39;GU&#39;, &#39;LH&#39;, &#39;CP&#39;, &#39;FA&#39;, &#39;WS&#39;, &#39;EA&#39;, &#39;EO&#39;, &#39;EC&#39;, &#39;ES&#39;)
+order_stage &lt;- c(&#39;Larva&#39;, &#39;Pupa&#39;, &#39;Adult&#39;, &#39;Eggs&#39;)
+
+# Default color palettes for ID, Stage, and Label variables
+cols_stage &lt;- c(&#39;Larva&#39; = &#39;#C6AC8F&#39;, &#39;Pupa&#39; = &#39;#5E503F&#39;, &#39;Adult&#39; = &#39;#0A0908&#39;, &#39;Eggs&#39; = &#39;#EAE0D5&#39;)
+
+cols_label &lt;- c(&#39;Larval haemolymph&#39; = &#39;#C7928F&#39;, &#39;Larval gut unsterile&#39; = &#39;#A35752&#39;, 
+                &#39;Larval gut sterile&#39; = &#39;#DDBDBB&#39;, &#39;Pupal cell pulp&#39; = &#39;#5E413F&#39;, 
+                &#39;Female abdomen&#39; = &#39;#4F4740&#39;, &#39;Wash solution&#39; = &#39;#70655C&#39;,
+                &#39;Eggs cage&#39; = &#39;#F1E0D0&#39;, &#39;Eggs ovarium&#39; = &#39;#E3C1A1&#39;, 
+                &#39;Eggs oviposition apparatus&#39; = &#39;#D09762&#39;, &#39;Eggs sterile&#39; = &#39;#C78243&#39;)
+
+cols_id &lt;- c(&#39;LH&#39; = &#39;#C7928F&#39;, &#39;GU&#39; = &#39;#A35752&#39;, &#39;GS&#39; = &#39;#DDBDBB&#39;, &#39;CP&#39; = &#39;#5E413F&#39;, 
+             &#39;FA&#39; = &#39;#4F4740&#39;, &#39;WS&#39; = &#39;#70655C&#39;, &#39;EC&#39; = &#39;#F1E0D0&#39;, &#39;EO&#39; = &#39;#E3C1A1&#39;, 
+             &#39;EA&#39; = &#39;#D09762&#39;, &#39;ES&#39; = &#39;#C78243&#39;)</code></pre>
+<p><br/></p>
+</div>
+<div id="load-the-data" class="section level3">
+<h3>Load the data</h3>
+<pre class="r"><code>asvmat &lt;- read.csv(&quot;../data/dada2-output/16S-asvmat.csv&quot;, sep = &quot;;&quot;, row.names = 1)
+taxmat &lt;- read.csv(&quot;../data/dada2-output/16S-taxmat.csv&quot;, sep = &quot;;&quot;, row.names = 1) 
+metmat &lt;- read.csv(&quot;../data/metadata.csv&quot;, sep = &quot;;&quot;)
+
+# Compare and check sequences, assign ASV labels to replace sequences in tables
+seq_check &lt;- data.frame(ASV_SEQS = colnames(otumat),
+                        TAX_SEQS = rownames(taxmat),
+                        ASV = paste0(&#39;OTU&#39;, seq(1:nrow(taxmat)))) %&gt;% 
+  mutate(TEST = ifelse(.$ASV_SEQS == .$TAX_SEQS, 1, 0))
+
+# Sanity check to see if sequences in ASV and taxonomy table match
+any(seq_check$TEST == 0) # If any values are 0, seqs do not match</code></pre>
+<p><br/></p>
+</div>
+<div id="prepare-tables" class="section level3">
+<h3>Prepare tables</h3>
+<pre class="r"><code>asvmat &lt;- data.frame(t(asvmat)) %&gt;% 
+  rownames_to_column(&#39;ASV_SEQS&#39;) %&gt;% 
+  left_join(seq_check %&gt;% select(ASV_SEQS, ASV)) %&gt;% 
+  column_to_rownames(&#39;ASV&#39;) %&gt;% 
+  select(-ASV_SEQS)
+
+taxmat &lt;- taxmat %&gt;% 
+  rownames_to_column(&#39;TAX_SEQS&#39;) %&gt;% 
+  left_join(seq_check %&gt;% select(TAX_SEQS, ASV)) %&gt;% 
+  column_to_rownames(&#39;ASV&#39;) %&gt;% 
+  select(-TAX_SEQS)</code></pre>
+<p><br/></p>
+</div>
+<div id="create-phyloseq-object" class="section level3">
+<h3>Create phyloseq object</h3>
+<pre class="r"><code>ps &lt;- phyloseq(
+  otu_table(as.matrix(asvmat), taxa_are_rows = T),
+  tax_table(as.matrix(taxmat)),
+  sample_data(metmat %&gt;% column_to_rownames(&#39;SampleID&#39;)))</code></pre>
+<div id="explore-the-phyloseq-object" class="section level4">
+<h4>Explore the phyloseq object</h4>
+<pre class="r"><code>sample_variables(ps) # check available metadata variables
+sample_names(ps) # check sample names
+sample_data(ps) # check metadata table
+
+# Make sure the variables are plotted in the right order
+sample_data(ps)$ID &lt;- factor(sample_data(ps)$ID, levels = order_id)
+sample_data(ps)$Stage &lt;- factor(sample_data(ps)$Stage, levels = order_stage)</code></pre>
+<p><br/></p>
+</div>
+</div>
+<div id="rarefaction" class="section level3">
+<h3>Rarefaction</h3>
+<pre class="r"><code>rarecurve(t(otu_table(ps)), step=50, cex=0.5)</code></pre>
+<center>
+<img src="output/16S-rarecurve_1.png" width="75%" />
+</center>
+<div id="remove-outlier-and-rarefy" class="section level4">
+<h4>Remove outlier and rarefy</h4>
+<pre class="r"><code># Check smallest sample size
+min(sample_sums(ps))
+
+# Remove smallest sample
+ps.sub &lt;- subset_samples(ps, sample_names(ps) != &#39;EA1&#39;)
+
+# Check again for smallest sample size and remaining number of samples
+min(sample_sums(ps.sub))
+nsamples(ps.sub)
+
+# Rarefy abundance data to even depth and plot rarefaction curves
+ps.rarefied &lt;- rarefy_even_depth(ps.sub, 
+                                 rngseed = 1000, 
+                                 sample.size = min(sample_sums(ps.sub)), 
+                                 replace = F)
+
+rarecurve(t(otu_table(ps.rarefied)), step=50, cex=0.5)</code></pre>
+<center>
+<img src="output/16S-rarecurve_2.png" width="75%" />
+</center>
+<p><br/></p>
+</div>
+<div id="before-and-after-filtering-and-rarefying"
+class="section level4">
+<h4>Before and after filtering and rarefying</h4>
+<p>Sample EA1 was removed from the dataset due to significantly lower
+read numbers. The remaining dataset was rarefied to the smallest sample
+size, thus, obtaining a dataset with equal sequencing depth.</p>
+<p><br/></p>
+<p><img src="output/16S-rarefy.png" /></p>
+<p><br/></p>
+</div>
+<div id="convert-phyloseq-object-to-ampvis2-object"
+class="section level4 tabset">
+<h4 class="tabset">Convert phyloseq object to ampvis2 object</h4>
+<div id="transformation" class="section level5">
+<h5>Transformation</h5>
+<pre class="r"><code>amp.rarefied &lt;- phyloseq_to_ampvis2(ps.rarefied)</code></pre>
+<p><br/></p>
+<hr />
+</div>
+<div id="phyloseq_to_ampvis2.r" class="section level5">
+<h5>phyloseq_to_ampvis2.R</h5>
+<p>Credits to Kasper Skytte Anderson <a
+href="https://github.com/KasperSkytte">github.com/KasperSkytte</a> for
+writing this function</p>
+<script src="https://gist.github.com/KasperSkytte/8d0ca4206a66be7ff6d76fc4ab8e66c6.js"></script>
+<p><br/></p>
+<hr />
+<!-- Visualization -->
+</div>
+</div>
+</div>
+</div>
+<div id="statistics-visualization" class="section level2">
+<h2><strong>Statistics &amp; Visualization</strong></h2>
+<div id="general-overview" class="section level3 tabset">
+<h3 class="tabset">General overview</h3>
+<div id="family-level-community-composition" class="section level4">
+<h4>Family level community composition</h4>
+<pre class="r"><code>p1 &lt;- ggplot(bac) +
+  geom_bar(aes(x = ID, y = Rel_Abundance/3, fill = Family), stat = &#39;identity&#39;, position = &#39;stack&#39;) +
+  scale_fill_manual(values = colorRampPalette(brewer.pal(12, &#39;Set3&#39;))(length(unique(bac$Family))))+
+  labs(x = &#39;&#39;, y = &#39;Relative abundance [%]&#39;) +
+  facet_grid(.~Stage, scales = &#39;free_x&#39;, space = &#39;free&#39;) +
+  guides(fill = guide_legend(ncol = 1, title = element_blank())) +
+  theme_classic()
+
+p2 &lt;- bac_sub %&gt;% filter(Family == &#39;Enterobacteriaceae&#39;) %&gt;% 
+  ggplot() +
+  geom_bar(aes(x = ID, y = Rel_Abundance/3, fill = Genus), stat = &#39;identity&#39;, position = &#39;stack&#39;) +
+  scale_fill_manual(values = cut_colors[enterobacteriaceae], name = &quot;Enterobacteriaceae&quot;) +
+  labs(x = &#39;&#39;, y = &#39;Relative abundance [%]&#39;) +
+  facet_grid(.~Stage, scales = &#39;free_x&#39;, space = &#39;free_x&#39;) +
+  theme_classic() +
+  theme(legend.position = &#39;left&#39;)
+
+p3 &lt;- bac_sub %&gt;% filter(Family == &#39;Burkholderiaceae&#39;) %&gt;% 
+  ggplot() +
+  geom_bar(aes(x = ID, y = Rel_Abundance/3, fill = Genus), stat = &#39;identity&#39;, position = &#39;stack&#39;) +
+  scale_fill_manual(values = cut_colors[burkholderiaceae], name = &quot;Burkholderiaceae&quot;) +
+  lims(y = c(0, 100)) +
+  facet_grid(.~Stage, scales = &#39;free_x&#39;, space = &#39;free_x&#39;) +
+  theme_classic() +
+  theme(legend.position = &#39;right&#39;)
+
+ggarrange(
+  p1 + 
+    theme(legend.position = &#39;bottom&#39;, 
+          legend.title = element_text(angle = 90),
+          legend.margin = margin(-10, 0, 20, 0)) + 
+    guides(fill = guide_legend(nrow = 4, title.hjust = 0.5)), 
+  ggarrange(p2 + 
+              scale_y_continuous(breaks = c(0, 25, 75, 100), position = &#39;right&#39;, limits = c(0, 100)) +
+              theme(axis.text.y.right = element_text(hjust = 0.5, vjust = 6, angle = 270),
+                    axis.title.y.right = element_text(size = 9)) +
+              guides(fill = guide_legend(label.position = &#39;left&#39;, label.hjust = 1)),
+            p3 + 
+              theme(axis.text.y = element_blank(),
+                    axis.title.y = element_blank()), 
+            labels = c(&#39;B&#39;, &#39;C&#39;), label.y = 1.05, font.label = list(color = &#39;grey45&#39;, face = &#39;bold&#39;)),
+  nrow = 2, heights = c(1.1, 0.8), labels = c(&#39;A&#39;),font.label = list(color = &#39;grey45&#39;, face = &#39;bold&#39;))</code></pre>
+</div>
+<div id="prepare-data" class="section level4">
+<h4>Prepare data</h4>
+<pre class="r"><code># Rarefy all samples
+ps.rarefied.full &lt;- rarefy_even_depth(ps, 
+                                      sample.size = min(sample_sums(ps)), 
+                                      rngseed = 1000, 
+                                      replace = F)
+
+# Construct table containing abundance, taxonomy, and meta information
+bac &lt;- data.frame(t(otu_table(ps.rarefied.full))) %&gt;% 
+  rownames_to_column(&#39;SampleID&#39;) %&gt;% 
+  melt(variable.name = &#39;ASV&#39;, value.name = &#39;Abundance&#39;) %&gt;% 
+  left_join(data.frame(tax_table(ps.rarefied.full)) %&gt;% 
+              rownames_to_column(&#39;ASV&#39;)) %&gt;%
+  filter(!is.na(Family)) %&gt;% 
+  group_by(SampleID) %&gt;% 
+  mutate(Rel_Abundance = Abundance/sum(Abundance)*100) %&gt;% 
+  left_join(data.frame(sample_data(ps.rarefied.full)) %&gt;% 
+              rownames_to_column(&#39;SampleID&#39;) %&gt;% 
+              select(SampleID, ID, Stage, Label)) %&gt;% 
+  mutate(ID = factor(ID, levels = order_id),
+         Stage = factor(Stage, levels = c(&#39;Larva&#39;, &#39;Pupa&#39;, &#39;Adult&#39;, &#39;Eggs&#39;)))
+
+# Subset families of Burkholderiaceae and Enterobacteriaceae
+bac_sub &lt;- bac %&gt;% 
+  filter(Family %in% c(&#39;Burkholderiaceae&#39;, &#39;Enterobacteriaceae&#39;)) %&gt;% 
+  mutate(Genus = gsub(&quot;-&quot;, &quot;-\n &quot;, Genus))
+
+cut_colors &lt;- setNames(colorRampPalette(brewer.pal(12, &#39;Set3&#39;))(length(unique(bac_sub$Genus))), levels(factor(bac_sub$Genus)))
+
+burkholderiaceae &lt;- bac_sub %&gt;% filter(Family == &#39;Burkholderiaceae&#39;) %&gt;% .$Genus %&gt;% unique()
+enterobacteriaceae &lt;- bac_sub %&gt;% filter(Family == &#39;Enterobacteriaceae&#39;) %&gt;% .$Genus %&gt;% unique()</code></pre>
+</div>
+</div>
+<div id="section" class="section level3 unlisted unnumbered">
+<h3 class="unlisted unnumbered"></h3>
+<center>
+<a href="https://raw.githubusercontent.com/tklammsteiner/eggsurfacemicrobiome/main/docs/output/16S-combined.png">
+<img src="output/16S-combined.png" width="100%" /></a>
+<p>
+<em>click figure to see larger version</em>
+</p>
+</center>
+<p><br/></p>
+</div>
+<div id="alpha-diversity" class="section level3">
+<h3>Alpha diversity</h3>
+<div id="create-comprehensive-alpha-diversity-table"
+class="section level4">
+<h4>Create comprehensive alpha diversity table</h4>
+<pre class="r"><code>alpha &lt;- alpha(ps.rarefied, index = &#39;all&#39;)</code></pre>
+<button onclick="Reactable.downloadDataCSV(&#39;alpha&#39;, &#39;alpha-diversity.csv&#39;)">Download as CSV</button>
+<div id="alpha" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="alpha">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["CP1","CP2","CP3","EA2","EA3","EC1","EC2","EC3","EO1","EO2","EO3","ES1","ES2","ES3","FA1","FA2","FA3","GS1","GS2","GS3","GU1","GU2","GU3","LH1","LH2","LH3","WS1","WS2","WS3"],"observed":[30,79,42,52,66,24,26,21,21,22,21,21,15,16,22,26,44,58,57,46,74,63,69,67,34,61,75,72,75],"chao1":[30,79.429,42.6,53.5,67.2,24,26,21,21,22,21,21,15,16,22,26,44,58.6,61.2,46,74,63,70,67,39,62,75.375,82.5,77],"diversity_inverse_simpson":[6.777,6.137,4.842,3.066,9.381,2.393,2.299,2.322,4.032,2.766,2.478,2.407,2.278,2.239,4.307,2.768,10.324,6.351,3.135,3.643,19.319,5.379,2.272,13.261,1.64,6.206,9.392,5.499,11.665],"diversity_gini_simpson":[0.852,0.837,0.793,0.674,0.893,0.582,0.565,0.569,0.752,0.638,0.596,0.584,0.561,0.553,0.768,0.639,0.903,0.843,0.681,0.725,0.948,0.814,0.56,0.925,0.39,0.839,0.894,0.818,0.914],"diversity_shannon":[2.26,2.527,2.046,1.702,2.769,1.195,1.134,1.104,1.735,1.387,1.27,1.216,1.063,1.063,1.897,1.646,2.763,2.375,1.815,1.954,3.391,2.59,1.668,3.102,0.928,2.553,2.855,2.462,2.981],"diversity_fisher":[3.563,10.805,5.226,6.673,8.778,2.767,3.029,2.38,2.38,2.508,2.38,2.38,1.63,1.753,2.508,3.029,5.511,7.564,7.414,5.798,10.018,8.319,9.24,8.931,4.107,8.016,10.174,9.705,10.174],"diversity_coverage":[3,3,2,1,4,1,1,1,2,1,1,1,1,1,2,1,4,2,1,2,7,3,1,5,1,2,4,2,5],"evenness_camargo":[0.235,0.15,0.142,0.097,0.186,0.113,0.095,0.111,0.205,0.139,0.131,0.129,0.166,0.149,0.228,0.18,0.27,0.146,0.099,0.149,0.294,0.199,0.103,0.253,0.069,0.189,0.183,0.154,0.201],"evenness_pielou":[0.665,0.578,0.547,0.431,0.661,0.376,0.348,0.363,0.57,0.449,0.417,0.399,0.393,0.383,0.614,0.505,0.73,0.585,0.449,0.51,0.788,0.625,0.394,0.738,0.263,0.621,0.661,0.576,0.69],"evenness_simpson":[0.226,0.078,0.115,0.059,0.142,0.1,0.088,0.111,0.192,0.126,0.118,0.115,0.152,0.14,0.196,0.106,0.235,0.11,0.055,0.079,0.261,0.085,0.033,0.198,0.048,0.102,0.125,0.076,0.156],"evenness_evar":[0.156,0.174,0.116,0.142,0.149,0.147,0.123,0.101,0.163,0.118,0.11,0.125,0.078,0.084,0.169,0.147,0.162,0.139,0.135,0.174,0.176,0.222,0.198,0.204,0.139,0.221,0.153,0.157,0.163],"evenness_bulla":[0.327,0.273,0.258,0.218,0.312,0.156,0.14,0.155,0.287,0.218,0.205,0.181,0.189,0.186,0.329,0.311,0.412,0.266,0.211,0.282,0.453,0.357,0.223,0.391,0.133,0.342,0.327,0.307,0.35],"dominance_dbp":[0.273,0.338,0.38,0.507,0.24,0.574,0.596,0.582,0.378,0.537,0.576,0.578,0.597,0.607,0.381,0.581,0.222,0.298,0.533,0.457,0.121,0.405,0.651,0.166,0.769,0.322,0.254,0.358,0.201],"dominance_dmn":[0.443,0.487,0.554,0.759,0.363,0.861,0.867,0.874,0.629,0.786,0.83,0.853,0.869,0.874,0.637,0.683,0.347,0.506,0.681,0.7,0.238,0.479,0.766,0.311,0.901,0.509,0.38,0.552,0.305],"dominance_absolute":[4414,5462,6142,8201,3885,9283,9631,9416,6107,8687,9318,9337,9653,9817,6153,9398,3597,4813,8609,7381,1954,6542,10532,2682,12426,5206,4099,5791,3246],"dominance_relative":[0.273,0.338,0.38,0.507,0.24,0.574,0.596,0.582,0.378,0.537,0.576,0.578,0.597,0.607,0.381,0.581,0.222,0.298,0.533,0.457,0.121,0.405,0.651,0.166,0.769,0.322,0.254,0.358,0.201],"dominance_simpson":[0.148,0.163,0.207,0.326,0.107,0.418,0.435,0.431,0.248,0.362,0.404,0.416,0.439,0.447,0.232,0.361,0.097,0.157,0.319,0.275,0.052,0.186,0.44,0.075,0.61,0.161,0.106,0.182,0.086],"dominance_core_abundance":[0.758,0.777,0.914,0.948,0.597,0.974,0.986,0.993,0.973,0.984,0.991,0.973,0.995,0.994,0.941,0.855,0.597,0.543,0.681,0.121,0.282,0.584,0.782,0.318,0.921,0.25,0.71,0.829,0.691],"dominance_gini":[0.981,0.97,0.984,0.987,0.967,0.993,0.993,0.994,0.988,0.992,0.993,0.993,0.994,0.994,0.986,0.988,0.969,0.977,0.985,0.982,0.941,0.966,0.98,0.954,0.994,0.968,0.963,0.97,0.959],"rarity_log_modulo_skewness":[2.027,2.057,2.043,2.044,2.05,2.038,2.042,2.028,2.028,1.985,2.019,2.028,1.981,1.994,2.015,1.981,2.012,2.053,2.055,2.023,2.033,2.052,2.056,2.034,2.053,2.048,2.05,2.055,2.042],"rarity_low_abundance":[0.007,0.024,0.016,0.016,0.024,0.012,0.01,0.008,0.003,0.004,0.006,0.006,0.005,0.006,0.002,0.006,0.012,0.023,0.018,0.017,0.017,0.021,0.034,0.018,0.017,0.017,0.024,0.022,0.029],"rarity_rare_abundance":[0.022,0.083,0.013,0.019,0.094,0.021,0.01,0.005,0.009,0.003,0.002,0.023,0.005,0.006,0.033,0.036,0.127,0.048,0.038,0.075,0.194,0.094,0.083,0.311,0.01,0.143,0.123,0.084,0.106]},"columns":[{"accessor":".rownames","name":"","type":"character","sortable":false,"filterable":false,"rowHeader":true},{"accessor":"observed","name":"observed","type":"numeric"},{"accessor":"chao1","name":"chao1","type":"numeric"},{"accessor":"diversity_inverse_simpson","name":"diversity_inverse_simpson","type":"numeric"},{"accessor":"diversity_gini_simpson","name":"diversity_gini_simpson","type":"numeric"},{"accessor":"diversity_shannon","name":"diversity_shannon","type":"numeric"},{"accessor":"diversity_fisher","name":"diversity_fisher","type":"numeric"},{"accessor":"diversity_coverage","name":"diversity_coverage","type":"numeric"},{"accessor":"evenness_camargo","name":"evenness_camargo","type":"numeric"},{"accessor":"evenness_pielou","name":"evenness_pielou","type":"numeric"},{"accessor":"evenness_simpson","name":"evenness_simpson","type":"numeric"},{"accessor":"evenness_evar","name":"evenness_evar","type":"numeric"},{"accessor":"evenness_bulla","name":"evenness_bulla","type":"numeric"},{"accessor":"dominance_dbp","name":"dominance_dbp","type":"numeric"},{"accessor":"dominance_dmn","name":"dominance_dmn","type":"numeric"},{"accessor":"dominance_absolute","name":"dominance_absolute","type":"numeric"},{"accessor":"dominance_relative","name":"dominance_relative","type":"numeric"},{"accessor":"dominance_simpson","name":"dominance_simpson","type":"numeric"},{"accessor":"dominance_core_abundance","name":"dominance_core_abundance","type":"numeric"},{"accessor":"dominance_gini","name":"dominance_gini","type":"numeric"},{"accessor":"rarity_log_modulo_skewness","name":"rarity_log_modulo_skewness","type":"numeric"},{"accessor":"rarity_low_abundance","name":"rarity_low_abundance","type":"numeric"},{"accessor":"rarity_rare_abundance","name":"rarity_rare_abundance","type":"numeric"}],"resizable":true,"defaultPageSize":5,"showPageSizeOptions":true,"pageSizeOptions":[10,25,50,100],"paginationType":"numbers","showPageInfo":true,"minRows":1,"compact":true,"nowrap":true,"elementId":"alpha","dataKey":"5f9c8f1e0c569c5eb1c3f106cd5ee543"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="prepare-data-for-plotting" class="section level4">
+<h4>Prepare data for plotting</h4>
+<pre class="r"><code># Extract metadata
+ps.rarefied.meta &lt;- meta(ps.rarefied)
+
+# Add selected alpha diversity measures to metadata table
+ps.rarefied.meta$Shannon &lt;- alpha$diversity_shannon
+ps.rarefied.meta$Evenness &lt;- alpha$evenness_pielou
+
+# Set order and grouping for statistics
+levels_stage &lt;- levels(as.factor(ps.rarefied.meta$Stage))
+pairs_stage &lt;- combn(seq_along(levels_stage), 2, simplify = F, FUN = function(i)levels_stage[i])</code></pre>
+</div>
+<div id="plot-alpha-diversity-measures-and-add-statics"
+class="section level4 tabset">
+<h4 class="tabset">Plot alpha diversity measures and add statics</h4>
+<div id="shannon" class="section level5">
+<h5>Shannon</h5>
+<pre class="r"><code># Set shapes for each group of samples
+shapes_id &lt;- c(&#39;LH&#39; = 16, &#39;GU&#39; = 17, &#39;GS&#39; = 18, &#39;CP&#39; = 16, &#39;FA&#39; = 16, &#39;WS&#39; = 17, &#39;EC&#39; = 16, &#39;EO&#39; = 17, &#39;EA&#39; = 18, &#39;ES&#39; = 15)
+
+# Plot alpha diversity values
+shannon_p &lt;- ggplot(ps.rarefied.meta, aes(x = Stage, y = Shannon)) +
+  geom_violin(aes(fill = Stage), 
+              colour = NA, trim = F, alpha = 0.4) +
+  geom_point(aes(colour = ID, shape = ID), 
+             size = 4, position = position_jitter(width = 0.15, seed = 12)) +
+  geom_boxplot(aes(fill = Stage), 
+               colour = &#39;white&#39;, width = 0.2, alpha = 0.25) +
+  scale_fill_manual(values = cols_stage) +
+  scale_color_manual(values = cols_id) +
+  scale_shape_manual(values = shapes_id) +
+  labs(x = &#39;Developmental stage&#39;,
+       y = &#39;Shannon index&#39;,
+       colour = &#39;&#39;,
+       shape = &#39;&#39;) +
+  guides(fill = &#39;none&#39;) +
+  theme_classic()
+
+# Add statistics
+shannon_p &lt;- shannon_p + stat_compare_means(aes(label = ..p.signif..), comparisons = pairs_stage, ref.group = &#39;0.5&#39;, method = &#39;wilcox.test&#39;)
+
+# Assign sample groups to developmental stages to subset legend
+larva &lt;- c(&#39;LH&#39;, &#39;GU&#39;, &#39;GS&#39;)
+pupa &lt;- c(&#39;CP&#39;)
+adult &lt;- c(&#39;FA&#39;, &#39;WS&#39;)
+eggs &lt;- c(&#39;EC&#39;, &#39;EO&#39;, &#39;EA&#39;, &#39;ES&#39;)
+
+# Create separate legends for each developmental stage
+legend_larva &lt;- get_legend(
+  ggplot(ps.rarefied.meta %&gt;% filter(Stage == &#39;Larva&#39;), 
+         aes(x = Stage, y = Shannon)) +
+    geom_point(aes(colour = ID, shape = ID), 
+               size = 4, position = position_jitter(width = 0.15, seed = 12)) +
+    labs(fill = &#39;Larva&#39;, colour = &#39;Larva&#39;, shape = &#39;Larva&#39;) +
+    scale_fill_manual(values = cols_stage[larva]) + 
+    scale_color_manual(values = cols_id[larva]) + 
+    scale_shape_manual(values = shapes_id[larva]))
+
+legend_pupa &lt;- get_legend(
+  ggplot(ps.rarefied.meta %&gt;% filter(Stage == &#39;pupa&#39;), 
+         aes(x = Stage, y = Shannon)) +
+    geom_point(aes(colour = ID, shape = ID), 
+               size = 4, position = position_jitter(width = 0.15, seed = 12)) +
+    labs(fill = &#39;Pupa&#39;, colour = &#39;Pupa&#39;, shape = &#39;Pupa&#39;) +
+    scale_fill_manual(values = cols_stage[pupa]) + 
+    scale_color_manual(values = cols_id[pupa]) + 
+    scale_shape_manual(values = shapes_id[pupa]))
+
+legend_adult &lt;- get_legend(
+  ggplot(ps.rarefied.meta %&gt;% filter(Stage == &#39;adult&#39;), 
+         aes(x = Stage, y = Shannon)) +
+    geom_point(aes(colour = ID, shape = ID), 
+               size = 4, position = position_jitter(width = 0.15, seed = 12)) +
+    labs(fill = &#39;Adult&#39;, colour = &#39;Adult&#39;, shape = &#39;Adult&#39;) +
+    scale_fill_manual(values = cols_stage[adult]) + 
+    scale_color_manual(values = cols_id[adult]) + 
+    scale_shape_manual(values = shapes_id[adult])) 
+
+legend_eggs &lt;- get_legend(
+  ggplot(ps.rarefied.meta %&gt;% filter(Stage == &#39;eggs&#39;), 
+         aes(x = Stage, y = Shannon)) +
+    geom_point(aes(colour = ID, shape = ID), 
+               size = 4, position = position_jitter(width = 0.15, seed = 12)) +
+    labs(fill = &#39;Eggs&#39;, colour = &#39;Eggs&#39;, shape = &#39;Eggs&#39;) +
+    scale_fill_manual(values = cols_stage[eggs]) + 
+    scale_color_manual(values = cols_id[eggs]) + 
+    scale_shape_manual(values = shapes_id[eggs]))
+
+# Arrange legends
+legends &lt;- ggarrange(legend_larva, legend_pupa, legend_adult, legend_eggs, nrow = 4, heights = c(0.4, 0.2, 0.3, 0.5))
+
+# Combine the alpha diversity plot with its legends
+shannon_p &lt;- ggarrange(shannon_p + theme(legend.position = &#39;none&#39;), ggarrange(legends,nrow = 2, heights = c(0.6, 0.4)), ncol = 2, widths = c(1.8, 0.3))
+
+shannon_p</code></pre>
+<center>
+<a href="https://raw.githubusercontent.com/tklammsteiner/eggsurfacemicrobiome/main/docs/output/16S-shannon.png">
+<img src="output/16S-shannon.png" width="75%" /></a>
+<p>
+<em>click figure to see larger version</em>
+</p>
+</center>
+<p><br/></p>
+</div>
+<div id="pielous-evenness" class="section level5">
+<h5>Pielou’s evenness</h5>
+<pre class="r"><code>pielou_p &lt;- ggplot(ps.rarefied.meta, aes(x = Stage, y = Evenness)) +
+  geom_violin(aes(fill = Stage), colour = NA, trim = F, alpha = 0.4) +
+  geom_point(aes(colour = ID, shape = Tissue), size = 4, position = position_jitter(width = 0.15, seed = 12)) +
+  geom_boxplot(aes(fill = Stage), colour = &#39;white&#39;, width = 0.2, alpha = 0.25) +
+  scale_fill_manual(values = cols_stage) +
+  scale_color_manual(values = cols_id) +
+  labs(x = &#39;Developmental stage&#39;,
+       y = &#39;Shannon index&#39;,
+       colour = &#39;&#39;,
+       shape = &#39;&#39;) +
+  guides(fill = &#39;none&#39;) +
+  theme_classic()
+
+pielou_p &lt;- pielou_p + stat_compare_means(aes(label = ..p.signif..), comparisons = pairs_stage, ref.group = &#39;0.5&#39;, method = &#39;wilcox.test&#39;)
+
+pielou_p</code></pre>
+<center>
+<a href="https://raw.githubusercontent.com/tklammsteiner/eggsurfacemicrobiome/main/docs/output/16S-pielou.png">
+<img src="output/16S-pielou.png" width="75%" /></a>
+<p>
+<em>click figure to see larger version</em>
+</p>
+</center>
+<p><br/></p>
+</div>
+<div id="rank-abundance" class="section level5">
+<h5>Rank abundance</h5>
+<pre class="r"><code>amp_rankabundance(amp.rarefied, group_by = &#39;Stage&#39;, showSD = TRUE, log10_x = TRUE) +
+  scale_colour_manual(values = cols_stage) +
+  scale_fill_manual(values = cols_stage)</code></pre>
+<center>
+<a href="https://raw.githubusercontent.com/tklammsteiner/eggsurfacemicrobiome/main/docs/output/16S-rankabund.png">
+<img src="output/16S-rankabund.png" width="75%" /></a>
+<p>
+<em>click figure to see larger version</em>
+</p>
+</center>
+<p><br/></p>
+</div>
+</div>
+</div>
+<div id="venn-diagrams" class="section level3 tabset">
+<h3 class="tabset">Venn diagrams</h3>
+<div id="life-cycle" class="section level4">
+<h4>Life cycle</h4>
+<pre class="r"><code># Group samples based on developmental stage
+
+venn_p1 &lt;- ps_venn(ps.rarefied, 
+                   group = &#39;Stage&#39;,
+                   fill = cols_stage,
+                   colour = &#39;white&#39;,
+                   edges = F,
+                   alpha = 0.5)
+venn_p1</code></pre>
+<center>
+<img src="output/16S-venn.png" width="50%" />
+</center>
+<p><br/></p>
+</div>
+<div id="eggs" class="section level4">
+<h4>Eggs</h4>
+<pre class="r"><code>ps_egg &lt;- subset_samples(ps.rarefied, Stage == &#39;Eggs&#39;)
+
+venn_p2 &lt;- ps_venn(ps_egg, 
+                   group = &#39;ID&#39;,
+                   fill = c(&#39;EA&#39; = &#39;#D09762&#39;, &#39;EO&#39; = &#39;#E3C1A1&#39;, &#39;EC&#39; = &#39;#F1E0D0&#39;, &#39;ES&#39; = &#39;#C78243&#39;),
+                   colour = &#39;white&#39;,
+                   edges = F,
+                   alpha = 0.5)
+venn_p2</code></pre>
+<center>
+<img src="output/16S-venn-egg.png" width="50%" />
+</center>
+<p><br/></p>
+</div>
+<div id="larvae" class="section level4">
+<h4>Larvae</h4>
+<pre class="r"><code>ps_lar &lt;- subset_samples(ps.rarefied, Stage == &#39;Larva&#39;)
+
+venn_p3 &lt;- ps_venn(ps_lar, 
+                   group = &#39;ID&#39;,
+                   fill = c(&#39;GS&#39; = &#39;#DDBDBB&#39;, &#39;GU&#39; = &#39;#A35752&#39;, &#39;LH&#39; = &#39;#C7928F&#39;),
+                   colour = &#39;white&#39;,
+                   edges = F,
+                   alpha = 0.5)
+venn_p3</code></pre>
+<center>
+<img src="output/16S-venn-lar.png" width="50%" />
+</center>
+<p><br/></p>
+</div>
+<div id="adults" class="section level4">
+<h4>Adults</h4>
+<pre class="r"><code>ps_adu &lt;- subset_samples(ps.rarefied, Stage == &#39;Adult&#39;)
+
+venn_p4 &lt;- ps_venn(ps_adu, 
+                   group = &#39;ID&#39;,
+                   fill = c(&#39;FA&#39; = &#39;#4F4740&#39;, &#39;WS&#39; = &#39;#70655C&#39;),
+                   colour = &#39;white&#39;,
+                   edges = F,
+                   alpha = 0.5)
+venn_p4</code></pre>
+<center>
+<img src="output/16S-venn-adu.png" width="50%" />
+</center>
+<p><br/></p>
+</div>
+<div id="eggsadults" class="section level4">
+<h4>Eggs+Adults</h4>
+<pre class="r"><code>ps_adu_egg &lt;- subset_samples(ps.rarefied, ID %in% c(&#39;FA&#39;, &#39;WS&#39;, &#39;EA&#39;, &#39;EO&#39;))
+
+venn_p5 &lt;- ps_venn(ps_adu_egg, 
+                   group = &#39;ID&#39;,
+                   fill = c(&#39;FA&#39; = &#39;#4F4740&#39;, &#39;WS&#39; = &#39;#70655C&#39;, &#39;EA&#39; = &#39;#D09762&#39;, &#39;EO&#39; = &#39;#E3C1A1&#39;),
+                   colour = &#39;white&#39;,
+                   edges = F,
+                   alpha = 0.5)
+venn_p5</code></pre>
+<center>
+<img src="output/16S-venn-aduegg.png" width="50%" />
+</center>
+</div>
+<div id="plots-arranged" class="section level4">
+<h4>Plots arranged</h4>
+<center>
+<a href="https://raw.githubusercontent.com/tklammsteiner/eggsurfacemicrobiome/main/docs/output/16S-venn-arranged.png">
+<img src="output/16S-venn-arranged.png" width="100%" /></a>
+<p>
+<em>click figure to see larger version</em>
+</p>
+</center>
+<p><br/></p>
+</div>
+</div>
+<div id="heatmap" class="section level3">
+<h3>Heatmap</h3>
+<div id="plot-heatmap" class="section level4">
+<h4>Plot heatmap</h4>
+<pre class="r"><code>amp_heatmap(
+  amp.rarefied,
+  group_by = &#39;SampleID&#39;,
+  facet_by = &#39;Stage&#39;, 
+  tax_aggregate = &#39;Genus&#39;,
+  tax_add = &#39;Phylum&#39;,
+  tax_show = 25, 
+  normalise = T, 
+  showRemainingTaxa = T, 
+  plot_values_size = 3, 
+  color_vector = c(&#39;white&#39;, &#39;#A2708A&#39;),
+  plot_colorscale = &#39;sqrt&#39;,
+  plot_values = F) +
+  theme(axis.text.x = element_text(angle = 45, size = 8, vjust = 1),
+        axis.text.y = element_text(size = 8),
+        legend.position=&#39;right&#39;)</code></pre>
+<p><br/></p>
+<center>
+<a href="https://raw.githubusercontent.com/tklammsteiner/eggsurfacemicrobiome/main/docs/output/16S-heatmap_1.png">
+<img src="output/16S-heatmap_1.png" width="100%" /></a>
+<p>
+<em>click figure to see larger version</em>
+</p>
+</center>
+<p><br/></p>
+</div>
+</div>
+<div id="ordination" class="section level3">
+<h3>Ordination</h3>
+<div id="canonical-correspondence-analysis"
+class="section level4 tabset">
+<h4 class="tabset">Canonical Correspondence Analysis</h4>
+<pre class="r"><code>ordinationresult &lt;- amp_ordinate(
+  amp.rarefied, 
+  type = &#39;CCA&#39;,
+  constrain = &#39;ID&#39;,
+  transform = &#39;Hellinger&#39;,
+  sample_color_by = &#39;Stage&#39;,
+  sample_colorframe = TRUE, 
+  sample_colorframe_label_size = 4, 
+  sample_colorframe_label = &#39;Stage&#39;, 
+  sample_label_by = &#39;ID&#39;, 
+  sample_label_size = 3.5,
+  repel_labels = T,
+  detailed_output = T)</code></pre>
+<div id="cca" class="section level5">
+<h5>CCA</h5>
+<pre class="r"><code>ordinationresult$plot +
+  scale_fill_manual(values = cols_stage) +
+  scale_colour_manual(values = cols_stage) +
+  labs(fill = &#39;&#39;, colour = &#39;&#39;) +
+  theme_classic() +
+  theme(legend.position = &#39;none&#39;)</code></pre>
+<center>
+<a href="https://raw.githubusercontent.com/tklammsteiner/eggsurfacemicrobiome/main/docs/output/16S-ordination_1.png">
+<img src="output/16S-ordination_1.png" width="75%"/></a>
+<p>
+<em>click figure to see larger version</em>
+</p>
+</center>
+<p><br/></p>
+</div>
+<div id="screeplot" class="section level5">
+<h5>Screeplot</h5>
+<pre class="r"><code>ordinationresult$screeplot</code></pre>
+<center>
+<a href="https://raw.githubusercontent.com/tklammsteiner/eggsurfacemicrobiome/main/docs/output/16S-screeplot_1.png">
+<img src="output/16S-screeplot_1.png" width="75%"/></a>
+<p>
+<em>click figure to see larger version</em>
+</p>
+</center>
+<p><br/></p>
+</div>
+</div>
+</div>
+<div id="permanova" class="section level3 tabset">
+<h3 class="tabset">Permanova</h3>
+<pre class="r"><code># Prepare data
+abund_tab &lt;- data.frame(t(otu_table(ps.rarefied)))
+group_tab &lt;- data.frame(sample_data(ps.rarefied)) %&gt;% rownames_to_column(&#39;SampleID&#39;)</code></pre>
+<div id="developmental-stage" class="section level4">
+<h4>Developmental stage</h4>
+<pre class="r"><code>set.seed(123)
+adonis_stage &lt;- adonis(abund_tab ~ Stage, data = group_tab, permutations = 1000, method = &#39;bray&#39;)
+adonis_stage</code></pre>
+<pre><code>## Permutation: free
+## Number of permutations: 1000
+## 
+## Terms added sequentially (first to last)
+## 
+##           Df SumsOfSqs MeanSqs F.Model      R2   Pr(&gt;F)    
+## Stage      3    3.9545 1.31815  12.676 0.60335 0.000999 ***
+## Residuals 25    2.5997 0.10399         0.39665             
+## Total     28    6.5541                 1.00000             
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p><br/></p>
+</div>
+<div id="tissue" class="section level4">
+<h4>Tissue</h4>
+<pre class="r"><code>set.seed(123)
+adonis_tissue &lt;- adonis(abund_tab ~ Tissue, data = group_tab, permutations = 1000, method = &#39;bray&#39;)
+adonis_tissue</code></pre>
+<pre><code>## Permutation: free
+## Number of permutations: 1000
+## 
+## Terms added sequentially (first to last)
+## 
+##           Df SumsOfSqs MeanSqs F.Model      R2   Pr(&gt;F)    
+## Tissue     4    3.6108 0.90270  7.3607 0.55092 0.000999 ***
+## Residuals 24    2.9433 0.12264         0.44908             
+## Total     28    6.5541                 1.00000             
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p><br/></p>
+</div>
+</div>
+<div id="pairwise-permanova" class="section level3 tabset">
+<h3 class="tabset">Pairwise Permanova</h3>
+<div id="developmental-stage-1" class="section level4">
+<h4>Developmental stage</h4>
+<pre class="r"><code>set.seed(123)
+ppermanova_stage &lt;- pairwise.perm.manova(vegdist(abund_tab, method = &#39;bray&#39;), group_tab$Stage, nperm = 1000, p.method = &#39;bonferroni&#39;)
+ppermanova_stage</code></pre>
+<pre><code>## 
+##  Pairwise comparisons using permutation MANOVAs on a distance matrix 
+## 
+## data:  vegdist(abund_tab, method = &quot;bray&quot;) by group_tab$Stage
+## 1000 permutations 
+## 
+##       Larva Pupa  Adult
+## Pupa  0.042 -     -    
+## Adult 0.012 0.156 -    
+## Eggs  0.006 0.048 0.006
+## 
+## P value adjustment method: bonferroni</code></pre>
+<p><br/></p>
+</div>
+<div id="tissue-1" class="section level4">
+<h4>Tissue</h4>
+<pre class="r"><code>set.seed(123)
+ppermanova_tissue &lt;- pairwise.perm.manova(vegdist(abund_tab, method = &#39;bray&#39;), grouping$Tissue, nperm = 1000, p.method = &#39;bonferroni&#39;)
+ppermanova_tissue</code></pre>
+<pre><code>## 
+##  Pairwise comparisons using permutation MANOVAs on a distance matrix 
+## 
+## data:  vegdist(abund_tab, method = &quot;bray&quot;) by grouping$Tissue
+## 1000 permutations 
+## 
+##            Eggs Gut  Haemolymph Ovarium
+## Gut        0.02 -    -          -      
+## Haemolymph 0.01 0.04 -          -      
+## Ovarium    0.16 0.15 0.52       -      
+## Ovipositor 0.06 0.03 1.00       0.87   
+## 
+## P value adjustment method: bonferroni</code></pre>
+<p><br/></p>
+</div>
+</div>
+<div id="lefse" class="section level3">
+<h3>LefSe</h3>
+<pre class="r"><code>lefse &lt;- run_lefse(ps.rarefied,
+                   group = &#39;Stage&#39;,
+                   taxa_rank = &#39;Genus&#39;)</code></pre>
+<div id="plot" class="section level4">
+<h4>Plot</h4>
+<pre class="r"><code>plot_ef_bar(x) +
+  scale_fill_manual(values = cols_stage) +
+  theme_classic() +
+  theme(legend.title = element_blank(),
+        legend.position = c(0.8, 0.1))</code></pre>
+<center>
+<a href="https://raw.githubusercontent.com/tklammsteiner/eggsurfacemicrobiome/main/docs/output/16S-lefse.png">
+<img src="output/16S-lefse.png" width="75%"/></a>
+<p>
+<em>click figure to see larger version</em>
+</p>
+</center>
+<p><br/></p>
+</div>
+</div>
+<div id="network" class="section level3">
+<h3>Network</h3>
+<pre class="r"><code>library(ggrepel)
+
+set.seed(100)
+
+ig &lt;- make_network(ps.rarefied, max.dist = 0.5, distance = &#39;bray&#39;)
+
+plot_network(ig, ps.rarefied, color = &#39;Stage&#39;, point_size = 4, type = &#39;samples&#39;, label = NA) +
+  geom_text_repel(aes(label = value), size = 3.5, box.padding = 0.5) +
+  scale_colour_manual(values = cols_stage) +
+  theme(legend.position = c(0.8, 0.2))</code></pre>
+<center>
+<a href="https://raw.githubusercontent.com/tklammsteiner/eggsurfacemicrobiome/main/docs/output/16S-network.png">
+<img src="output/16S-network.png" width="75%"/></a>
+<p>
+<em>click figure to see larger version</em>
+</p>
+</center>
+<hr />
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
