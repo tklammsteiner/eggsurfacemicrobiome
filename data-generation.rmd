@@ -35,11 +35,11 @@ The quality-checked DNA extracts were sent to Microsynth GmBH (Balgach, Switzerl
 <br/>
 
 ### Amplicon sequencing  
-The amplicon sequencing was carried out on a Illumina MiSeq, following a 2&#215;250 approach. The universal bacterial primers **341f/802r** (5′-CCTACGGGRSGCAGCAG-3′ / 5′-TACNVGGGTATCTAATCC-3′) and the universal fungal primers **ITS3f/ITS4r** (5′-GCATCGATGAAGAACGCAGC-3′ / 5′-TCCTCCGCTTATTGATATGC-3′) were used to target the  V3-V4 and ITS2 genetic regions, respectively. Library preparation was performed by the sequencing provider based on a Nextera two-step PCR including purification, quantification, and equimolar pooling.
+The amplicon sequencing was carried out on a Illumina MiSeq, following a 2 &#215; 250 approach. The universal bacterial primers **341f/802r** (5′-CCTACGGGRSGCAGCAG-3′ / 5′-TACNVGGGTATCTAATCC-3′) and the universal fungal primers **ITS3f/ITS4r** (5′-GCATCGATGAAGAACGCAGC-3′ / 5′-TCCTCCGCTTATTGATATGC-3′) were used to target the  V3-V4 and ITS2 genetic regions, respectively. Library preparation was performed by the sequencing provider based on a Nextera two-step PCR including purification, quantification, and equimolar pooling.
 
 <br/>
 
 ### Sequence processing and analysis
-All sequence data were processed using DADA2 (Callahan, et al. 2018). Data analysis and visualization was mainly done using the R packages ggplot2 (Wickham xxx), vegan (Oksanen, et al. xxx), phyloseq (xxx), ampvis2 (xxx). For a detailed and reproducible description please see workflows for [Bacteria](https://tklammsteiner.github.io/eggsurfacemicrobiome/bacteria.html) and [Fungi](https://tklammsteiner.github.io/eggsurfacemicrobiome/fungi.html).
+All sequence data were processed using DADA2 (Callahan et al., 2018). Data analysis and visualization was mainly done using the R packages ggplot2 (Wickham, 2016), vegan (Oksanen et al., 2022), phyloseq (McMurdie and Holmes, 2013), ampvis2 (Andersen et al., 2018). For a detailed and reproducible description please [continue here](https://tklammsteiner.github.io/eggsurfacemicrobiome/data-analysis-16S.html).  
 
 ***
