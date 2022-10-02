@@ -10,8 +10,8 @@ navbar:
           href: data-generation.html
         - text: '16S analysis'
           href: 16S_analysis.html
-      # - text: 'ITS analysis'
-      #   href: ITS_analysis.html
+        - text: 'Sterilization protocol'
+          href: sterilization.html
     - text: "Download Data"
       href: data.html
     - text: 'Figures'

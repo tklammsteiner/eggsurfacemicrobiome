@@ -1,0 +1,90 @@
+---
+title: "Sterilization"
+---
+
+<style>
+  p.comment {
+  background-color: #FCF9EE;
+  padding: 10px;
+  margin-left: 25px;
+  margin-right: 50px;
+  border-radius: 5px;
+  }
+</style>
+
+<br/><br/>
+
+<center>
+
+<a href="https://raw.githubusercontent.com/tklammsteiner/eggsurfacemicrobiome/main/docs/images/sterilization_low.png">
+    <img src="images/sterilization_low.png" width="100%" />
+</a>
+        
+<figcaption align = "center">
+    <b>Fig. 1</b> - Egg sterilization workflow.  
+</figcaption>
+    
+<p>*click figure to see larger version*</p>
+  
+  
+<br/><br/><br/><br/>
+
+<center>
+
+<a href="https://raw.githubusercontent.com/tklammsteiner/eggsurfacemicrobiome/main/docs/images/sterilization-test-eseggs.png">
+    <img src="images/sterilization-test-eseggs.png" width="100%" />
+</a>
+        
+<figcaption align = "center">
+    <b>Fig. 2</b> - Sterilized eggs placed on standard I nutrient agar and incubated at 30 °C for 24 h.  
+</figcaption>
+    
+<p>*click figure to see larger version*</p>
+  
+  
+<br/><br/><br/><br/>
+
+<center>
+
+<a href="https://raw.githubusercontent.com/tklammsteiner/eggsurfacemicrobiome/main/docs/images/sterilization-test-eswash.png">
+    <img src="images/sterilization-test-eswash.png" width="100%" />
+</a>
+        
+<figcaption align = "center">
+    <b>Fig. 3</b> - Wash from sterilized eggs plated on standard I nutrient agar and incubated at 30 °C for 24 h.  
+</figcaption>
+    
+<p>*click figure to see larger version*</p>
+  
+  
+<br/><br/><br/><br/>
+
+<center>
+
+<a href="https://raw.githubusercontent.com/tklammsteiner/eggsurfacemicrobiome/main/docs/images/sterilization-test-eceggs.png">
+    <img src="images/sterilization-test-eceggs.png" width="100%" />
+</a>
+        
+<figcaption align = "center">
+    <b>Fig. 4</b> - Non-sterilized eggs placed on standard I nutrient agar and incubated at 30 °C for 24 h.  
+</figcaption>
+    
+<p>*click figure to see larger version*</p>
+  
+  
+<br/><br/><br/><br/>
+
+<center>
+
+<a href="https://raw.githubusercontent.com/tklammsteiner/eggsurfacemicrobiome/main/docs/images/sterilization-test-ecwash.png">
+    <img src="images/sterilization-test-ecwash.png" width="100%" />
+</a>
+        
+<figcaption align = "center">
+    <b>Fig. 2</b> - Wash from non-sterilized eggs plated on standard I nutrient agar and incubated at 30 °C for 24 h.  
+</figcaption>
+    
+<p>*click figure to see larger version*</p>
+  
+  
+<br/><br/><br/><br/>
