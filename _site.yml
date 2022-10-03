@@ -9,7 +9,7 @@ navbar:
         - text: 'Data generation'
           href: data-generation.html
         - text: 'Data analysis'
-          href: data-analysis-16S.html
+          href: data-analysis-BAC.html
         - text: 'Data download'
           href: data.html
     - text: 'Figures'
