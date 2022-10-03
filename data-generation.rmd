@@ -40,6 +40,6 @@ The amplicon sequencing was carried out on a Illumina MiSeq, following a 2 &#215
 <br/>
 
 ### Sequence processing and analysis
-All sequence data were processed using DADA2 (Callahan et al., 2018). Data analysis and visualization was mainly done using the R packages ggplot2 (Wickham, 2016), vegan (Oksanen et al., 2022), phyloseq (McMurdie and Holmes, 2013), ampvis2 (Andersen et al., 2018). For a detailed and reproducible description please [continue here](https://tklammsteiner.github.io/eggsurfacemicrobiome/data-analysis-16S.html).  
+All sequence data were processed using DADA2 (Callahan et al., 2018). Data analysis and visualization was mainly done using the R packages ggplot2 (Wickham, 2016), vegan (Oksanen et al., 2022), phyloseq (McMurdie and Holmes, 2013), ampvis2 (Andersen et al., 2018). For a detailed and reproducible description please [continue here](https://tklammsteiner.github.io/eggsurfacemicrobiome/data-analysis-BAC.html).  
 
 ***
