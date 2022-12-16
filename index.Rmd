@@ -33,7 +33,7 @@ This website provides reproducible documentation for the methods and tools used 
 To cite these data:  
 
 <p class="comment">
-Heussler, C.D., Klammsteiner, T., Insam, H., Schlick-Steiner, B.C., Steiner, F.M. (2022). *Decrypting the microbiota on the black soldier fly’s embryo surface and their origin during development*. URL: [https://tklammsteiner.github.io/eggsurfacemicrobiome](https://tklammsteiner.github.io/eggsurfacemicrobiome)  
+Heussler, C.D.<sup>†</sup>, Klammsteiner, T.<sup>†</sup>, Insam, H., Schlick-Steiner, B.C., Steiner, F.M. (2022). *Decrypting the microbiota on the black soldier fly’s embryo surface and their origin during development*. URL: [https://tklammsteiner.github.io/eggsurfacemicrobiome](https://tklammsteiner.github.io/eggsurfacemicrobiome)  
 </p>
 
 <br/>

@@ -1,6 +1,6 @@
 name: 'eggsurfacemicrobiome'
 navbar:
-  title: 'Heussler et al., 2022'
+  title: ''
   left:
     - text: 'About'
       href: index.html
