@@ -4,6 +4,8 @@
 
 Heussler, C.D.*, Klammsteiner, T.\*, Stonig, K.T., Insam, H., Schlick-Steiner, B.C., Steiner, F.M.  
 
+\**equal contribution*  
+
 ![Overview](images/experiment.png)
 
 Reproducible documentation for analyzing the microbiome involved in black soldier fly reproduction and oviposition.
