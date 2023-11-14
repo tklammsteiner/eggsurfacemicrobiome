@@ -1,0 +1,72 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: >-
+  Microbial influences on black soldier fly reproduction: A
+  focus on egg surface colonization
+message: >-
+  If you use this dataset, please cite it using the metadata
+  from this file.
+type: dataset
+authors:
+  - given-names: Carina D.
+    family-names: Heussler
+    email: carina.heussler@uibk.ac.at
+  - given-names: Thomas
+    family-names: Klammsteiner
+    email: thomas.klammsteiner@uibk.ac.at
+  - given-names: Katharina T.
+    family-names: Stonig
+    email: katharina.stonig@uibk.ac.at
+  - given-names: Heribert
+    family-names: Insam
+    email: heribert.insam@uibk.ac.at
+  - given-names: Birgit C.
+    family-names: Schlick-Steiner
+    email: birgit.schlick-steiner@uibk.ac.at
+  - given-names: Florian M.
+    family-names: Steiner
+    email: florian.m.steiner@uibk.ac.at
+identifiers:
+  - type: doi
+    value: 10.21203/rs.3.rs-3314156/v1
+    description: Research Gate Preprint
+repository-code: 'https://www.github.com/tklammsteiner/eggsurfacemicrobiome'
+url: 'https://tklammsteiner.github.io/eggsurfacemicrobiome'
+abstract: >-
+  The growing global population increases the demand for
+  protein, while the management of organic waste is becoming
+  more challenging. Alternative protein sources are needed
+  to reduce the negative environmental impact of food
+  production. Lately, the black soldier fly (BSF) has been
+  proposed as an ideal animal protein substitute due to its
+  ability to consume and reduce diverse organic waste, thus
+  solving two problems at the same time. Mass-rearing of BSF
+  depends on flourishing reproduction, which is influenced
+  by environmental and physiological factors. BSF females
+  oviposit egg clutches near decomposing organic matter and
+  conspecific eggs, with studies highlighting the crucial
+  role of microorganisms in oviposition. In this study, we
+  focus on the surface microbiota of the egg and its origin.
+  We investigated if the microbiota are inoculated before,
+  during, or actively after oviposition. For this purpose,
+  we analysed the microbiota in the haemolymph and gut of
+  larvae raised on sterilized and non-sterilized feed, the
+  pupal cell pulp, the wash of the egg-laying apparatus and
+  the eggs directly collected after oviposition, the ovarian
+  eggs and the empty female abdomen, the eggs with contact
+  to adult BSF, and sterilized eggs to assess the stage in
+  BSF development during which the microbial colonization of
+  the egg surface occurs.
+keywords:
+  - microbial communities
+  - oviposition
+  - attractants
+  - interkingdom communication
+  - circular economy
+  - insect farming
+  - bio-economy
+  - microbial colonization
+  - insect immunity
+  - alternative protein
